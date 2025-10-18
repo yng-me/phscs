@@ -21,6 +21,7 @@ Suggests:
   testthat (>= 3.0.0),
   utils (>= 4.0.0),
   cli,
+  tzdb,
   gt,
   rmarkdown,
   knitr

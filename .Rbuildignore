@@ -1,12 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.*\.parquet
-
 .DS_Store
 
-playground
-parquet
-data
+^playground$
+^parquet$
 
 ^LICENSE\.md$
 ^\.github$

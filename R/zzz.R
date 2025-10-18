@@ -104,7 +104,7 @@ utils::globalVariables(
     phscs.options = list(
       classification_base_uri = "https://classification.psa.gov.ph",
       versions = list(
-        psgc = c("July_2025", "Q3_2025", "Q2_2025", "Q1_2025", "April_2024", "Q4_2024", "Q3_2024", "Q2_2024", "Q4_2023", "Q1_2023", "Q2_2021"),
+        psgc = c("Q3_2025", "July_2025", "Q2_2025", "Q1_2025", "April_2024", "Q4_2024", "Q3_2024", "Q2_2024", "Q4_2023", "Q1_2023", "Q2_2021"),
         pcoicop = c("2020", "2009"),
         pcpc = "2002",
         pscc = "2022",
