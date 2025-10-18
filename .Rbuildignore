@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+
+.DS_Store
+.parquet
+
+playground
+data/
