@@ -18,7 +18,10 @@ knitr::opts_chunk$set(
 
 You can install the development version of `phscs` from GitHub using the `pak` package:
 
-```{r setup}
+```{r setup, eval=FALSE}
+# install.packages("pak")
+pak::pak("yng-me/phscs")
+
 library(phscs)
 ```
 
@@ -26,47 +29,39 @@ library(phscs)
 
 One of the main functions in the `phscs` package is `get_psgc()`, which retrieves the [Philippine Standard Geographic Code](https://psa.gov.ph/classification/psgc) (PSGC) data. This function allows you to specify various parameters such as the version, level of geographic data, and whether to harmonize or minimize the dataset.
 
-```{r psgc-example}
+```{r psgc-example, eval=FALSE}
 # Retrieve PSGC data
 psgc_data <- get_psgc()
-
-psgc_data |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
+head(psgc_data)
 ```
+
 
 You can also retrieve data for specific levels, such as regions, provinces, municipalities, and barangays.
 
-```{r psgc-levels}
+```{r psgc-levels, eval=FALSE}
 psgc_provinces <- get_psgc(level = "provinces")
-psgc_regions <- get_psgc(level = "regions")
+head(psgc_provinces)
 
-psgc_regions |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
+psgc_regions <- get_psgc(level = "regions")
+head(psgc_regions)
 ```
 
 
 You can also filter the data using `dplyr` syntax. For example, to get all areas in the region with code "10":
 
-```{r psgc-filter}
+```{r psgc-filter, eval=FALSE}
 # Retrieve PSGC data for areas in region 10
 psgc_region_10 <- get_psgc(grepl("^10", area_code))
-
-psgc_region_10 |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
+head(psgc_region_10)
 ```
 
 
 You can also retrieve the full PSGC dataset with all available columns by setting `minimal = FALSE` or by specifying additional columns to include:
 
-```{r psgc-cols}
+```{r psgc-cols, eval=FALSE}
 # Retrieve full PSGC data
 psgc_full_data <- get_psgc(minimal = FALSE)
+head(psgc_full_data)
 
 # Retrieve PSGC data with additional columns
 psgc_data_with_cols <- get_psgc(
@@ -78,10 +73,7 @@ psgc_data_with_cols <- get_psgc(
   )
 )
 
-psgc_data_with_cols |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
+head(psgc_data_with_cols)
 ```
 
 
@@ -90,17 +82,14 @@ psgc_data_with_cols |>
 
 The `get_psic()` function retrieves the [Philippine Standard Industrial Classification](https://psa.gov.ph/classification/psic) (PSIC) data. You can specify the level of detail you want, such as sections or divisions.
 
-```{r psic-example}
+```{r psic-example, eval=FALSE}
 # Retrieve PSIC data
 psic_data <- get_psic()
+head(psic_data)
 
 # Retrieve PSIC data for specific levels
 psic_sections <- get_psic(level = "sections")
-
-psic_sections |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
+head(psic_sections)
 ```
 
 
@@ -108,17 +97,15 @@ psic_sections |>
 
 The `get_psoc()` function retrieves the [Philippine Standard Occupational Classification](https://psa.gov.ph/classification/psoc) (PSOC) data. Similar to PSIC, you can specify the level of detail you want.
 
-```{r psoc-example}
+```{r psoc-example, eval=FALSE}
 # Retrieve PSOC data
 psoc_data <- get_psoc()
+head(psoc_data)
 
 # Retrieve PSOC data for specific levels
 psoc_major <- get_psoc(level = "major")
+head(psoc_major)
 
-psoc_major |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
 ```
 
 
@@ -126,26 +113,19 @@ psoc_major |>
 
 The `get_psced()` function retrieves the [Philippine Standard Classification for Education](https://psa.gov.ph/classification/psced) (PSCED) data. You can specify the level of detail you want, such as broadfield or narrowfield.
 
-```{r pscc-example}
+```{r pscc-example, eval=FALSE}
 # Retrieve PSCED data
 psced_data <- get_psced()
-psced_data |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
+head(psced_data)
 ```
 
 
 You can also retrieve data for specific levels, such as `broadfield` or `narrowfield`:
 
-```{r psced-levels}
+```{r psced-levels, eval=FALSE}
 # Retrieve PSCED data for specific levels
 psced_broadfield <- get_psced(level = "broadfield")
-
-psced_broadfield |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
+head(psced_broadfield)
 ```
 
 
@@ -153,14 +133,10 @@ psced_broadfield |>
 
 The `get_pcoicop()` function retrieves the [Philippine Classification of Individual Consumption According to Purpose](https://psa.gov.ph/classification/pcoicop) (PCOICOP) data. You can specify the level of detail you want, such as divisions or groups.
 
-```{r pcoicop-example}
+```{r pcoicop-example, eval=FALSE}
 # Retrieve PCOICOP data
 pcoicop_data <- get_pcoicop()
-pcoicop_data |>
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
-
+head(pcoicop_data)
 ```
 
 
