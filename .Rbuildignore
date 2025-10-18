@@ -12,3 +12,4 @@ data
 
 ^LICENSE\.md$
 ^\.github$
+^README\.Rmd$
