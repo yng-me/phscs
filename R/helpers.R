@@ -77,7 +77,11 @@ get_data_from_cache <- function(what, version, level, ...) {
 
   filename <- glue::glue("{what}_{tolower(version)}.parquet")
 
-  path <- system.file("extdata", package = "phscs")
+  path <- system.file(package = "phscs")
+
+  if(!grepl("extdata", path)) {
+    path <- file.path(path, "extdata")
+  }
 
   if(!dir.exists(path)) { dir.create(path, recursive = TRUE) }
   file <- file.path(path, filename)
