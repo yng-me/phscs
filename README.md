@@ -5,6 +5,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/yng-me/phscs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yng-me/phscs/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `phscs` is to provide a unified interface to access and
@@ -14,9 +15,10 @@ Industrial Classification (PSIC), Philippine Standard Occupational
 Classification (PSOC), and others.
 
 It allows users to retrieve, filter, and harmonize classification data
-from the Philippine Statistics Authority (PSA)’s open-access data and
-other sources, making it easier to work with Philippine statistical data
-in R.
+from the [Philippine Statistics
+Authority](https://psa.gov.ph/classification) (PSA)’s open-access data
+and other sources, making it easier to work with Philippine statistical
+data in R.
 
 ## Installation
 

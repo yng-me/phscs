@@ -1,0 +1,174 @@
+---
+title: "Using the `phscs` Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the `phscs` Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Installation
+
+You can install the development version of `phscs` from GitHub using the `pak` package:
+
+```{r setup}
+library(phscs)
+```
+
+## Philippine Standard Geographic Code (PSGC)
+
+One of the main functions in the `phscs` package is `get_psgc()`, which retrieves the [Philippine Standard Geographic Code](https://psa.gov.ph/classification/psgc) (PSGC) data. This function allows you to specify various parameters such as the version, level of geographic data, and whether to harmonize or minimize the dataset.
+
+```{r psgc-example}
+# Retrieve PSGC data
+psgc_data <- get_psgc()
+
+psgc_data |> 
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+You can also retrieve data for specific levels, such as regions, provinces, municipalities, and barangays.
+
+```{r psgc-levels}
+psgc_provinces <- get_psgc(level = "provinces")
+psgc_regions <- get_psgc(level = "regions")
+
+psgc_regions |> 
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+
+You can also filter the data using `dplyr` syntax. For example, to get all areas in the region with code "10":
+
+```{r psgc-filter}
+# Retrieve PSGC data for areas in region 10
+psgc_region_10 <- get_psgc(grepl("^10", area_code))
+
+psgc_region_10 |> 
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+
+You can also retrieve the full PSGC dataset with all available columns by setting `minimal = FALSE` or by specifying additional columns to include:
+
+```{r psgc-cols}
+# Retrieve full PSGC data
+psgc_full_data <- get_psgc(minimal = FALSE)
+
+# Retrieve PSGC data with additional columns
+psgc_data_with_cols <- get_psgc(
+  cols = c(
+    "area_code", 
+    "area_name", 
+    "region_code", 
+    "province_code"
+  )
+)
+
+psgc_data_with_cols |> 
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+
+
+## Philippine Standard Industrial Classification (PSIC)
+
+The `get_psic()` function retrieves the [Philippine Standard Industrial Classification](https://psa.gov.ph/classification/psic) (PSIC) data. You can specify the level of detail you want, such as sections or divisions.
+
+```{r psic-example}
+# Retrieve PSIC data
+psic_data <- get_psic()
+
+# Retrieve PSIC data for specific levels
+psic_sections <- get_psic(level = "sections")
+
+psic_sections |> 
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+
+## Philippine Standard Occupational Classification (PSOC)
+
+The `get_psoc()` function retrieves the [Philippine Standard Occupational Classification](https://psa.gov.ph/classification/psoc) (PSOC) data. Similar to PSIC, you can specify the level of detail you want.
+
+```{r psoc-example}
+# Retrieve PSOC data
+psoc_data <- get_psoc()
+
+# Retrieve PSOC data for specific levels
+psoc_major <- get_psoc(level = "major")
+
+psoc_major |> 
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+
+## Philippine Standard Classification for Education (PSCED)
+
+The `get_psced()` function retrieves the [Philippine Standard Classification for Education](https://psa.gov.ph/classification/psced) (PSCED) data. You can specify the level of detail you want, such as broadfield or narrowfield.
+
+```{r pscc-example}
+# Retrieve PSCED data
+psced_data <- get_psced()
+psced_data |> 
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+
+You can also retrieve data for specific levels, such as `broadfield` or `narrowfield`:
+
+```{r psced-levels}
+# Retrieve PSCED data for specific levels
+psced_broadfield <- get_psced(level = "broadfield")
+
+psced_broadfield |> 
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+```
+
+
+## Philippine Classification of Individual Consumption According to Purpose (PCOICOP)
+
+The `get_pcoicop()` function retrieves the [Philippine Classification of Individual Consumption According to Purpose](https://psa.gov.ph/classification/pcoicop) (PCOICOP) data. You can specify the level of detail you want, such as divisions or groups.
+
+```{r pcoicop-example}
+# Retrieve PCOICOP data
+pcoicop_data <- get_pcoicop()
+pcoicop_data |>
+  head(10) |> 
+  gt::gt() |> 
+  gt::tab_options(table.align = "left")
+
+```
+
+
+
+
+
+
+
+
+
+
