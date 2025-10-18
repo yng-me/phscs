@@ -4,8 +4,7 @@ Title: Philippine Statistical Classification Systems
 Version: 0.1.0
 Author: Bhas Abdulsamad [aut, cre, cph] (<https://orcid.org/0009-0002-5891-8124>)
 Maintainer: Bhas Abdulsamad <aeabdulsamad@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: A unified interface to access and manipulate various Philippine statistical classifications.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports:
