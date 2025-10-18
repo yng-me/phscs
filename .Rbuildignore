@@ -11,3 +11,4 @@ parquet
 data
 
 ^LICENSE\.md$
+^\.github$
