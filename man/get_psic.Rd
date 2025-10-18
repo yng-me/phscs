@@ -5,6 +5,7 @@
 \title{Retrieve Philippine Standard Industrial Classification (PSIC)}
 \usage{
 get_psic(
+  ...,
   token = NULL,
   version = NULL,
   level = NULL,

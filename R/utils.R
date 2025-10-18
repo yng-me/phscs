@@ -1,4 +1,8 @@
-eval_args <- function(version, level, versions, levels, level_default) {
+eval_args <- function(what, version, level, level_default) {
+
+  options <- getOption("phscs.options")
+  versions <- options$versions[[what]]
+  levels <- options$levels[[what]]
 
   if(is.null(version)) { version <- versions[1] }
   if(tolower(version) == "latest") { version <- versions[1] }
@@ -57,4 +61,10 @@ fill_with_previous_value <- function(data, col, replacer, col_name = "new_indica
 
   data
 
+}
+
+
+clean_text <- function(x) {
+  x <- stringr::str_squish(stringr::str_trim(x))
+  dplyr::if_else(x == "", NA_character_, x)
 }

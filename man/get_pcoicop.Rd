@@ -5,6 +5,7 @@
 \title{Philippine Classification of Individual Consumption According to Purpose (PCOICOP)}
 \usage{
 get_pcoicop(
+  ...,
   token = NULL,
   version = "2020",
   level = "all",

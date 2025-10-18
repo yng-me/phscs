@@ -15,23 +15,23 @@
 #' get_psic(token = "your_api_token")
 #' }
 
-get_psic <- function(token = NULL, version = NULL, level = NULL, harmonize = TRUE, minimal = TRUE, cols = NULL) {
+get_psic <- function(..., token = NULL, version = NULL, level = NULL, harmonize = TRUE, minimal = TRUE, cols = NULL) {
 
   level_default <- "sub-classes"
 
   arg <- eval_args(
+    what = "psic",
     version = version,
     level = level,
-    versions = "2019",
-    levels = c("all", "sections", "divisions", "groups", "classes", "sub-classes"),
     level_default
   )
 
   get_data(
     what = "psic",
-    token = token,
     version = arg$version,
     level = arg$level,
+    ...,
+    token = token,
     harmonize = harmonize & level == level_default,
     minimal = minimal,
     cols = cols
@@ -39,29 +39,74 @@ get_psic <- function(token = NULL, version = NULL, level = NULL, harmonize = TRU
 
 }
 
-parse_psic <- function(data, minimal, col = NULL) {
 
-  data <- dplyr::tibble(
+parse_psic <- function(data, minimal = TRUE, col = NULL) {
+
+  data |>
     dplyr::transmute(
-      data,
       id,
-      section_code = section,
-      division_code = division,
-      group_code = groupcode,
-      class_code = class_code,
-      sub_class_code = subclass,
-      title = stringr::str_trim(title),
-      description = stringr::str_trim(subclassdesc),
-      version
-    )
-  )
+      section__value = clean_text(section),
+      section__label = clean_text(section_title),
+      section__description = clean_text(sectiondesc),
+      division__value = clean_text(division),
+      division__label = clean_text(division_title),
+      division__description = clean_text(division_desc),
+      group__value = clean_text(groupcode),
+      group__label = clean_text(group_title),
+      group__description = clean_text(groupdesc),
+      class__value = clean_text(classcode),
+      class__label = clean_text(class_title),
+      class__description = clean_text(classdesc),
+      sub_class__value = clean_text(subclasscode),
+      sub_class__label = clean_text(subclass_title),
+      sub_class__description = clean_text(subclassdesc)
+    ) |>
+    tidyr::pivot_longer(-id) |>
+    dplyr::mutate(
+      level = stringr::str_split_i(name, '__', 1),
+      col = stringr::str_split_i(name, '__', 2),
+    ) |>
+    dplyr::select(-name) |>
+    tidyr::pivot_wider(names_from = col, values_from = value) |>
+    dplyr::select(-id) |>
+    dplyr::filter(!is.na(value)) |>
+    dplyr::distinct(value, .keep_all = T) |>
+    dplyr::mutate(
+      level = dplyr::case_when(
+        level == "section" ~ 1L,
+        level == "division" ~ 2L,
+        level == "group" ~ 3L,
+        level == "class" ~ 4L,
+        level == "sub_class" ~ 5L,
+        TRUE ~ NA_integer_
+      )
+    ) |>
+    dplyr::filter(!is.na(level)) |>
+    dplyr::arrange(level)
+
+}
+
+
+get_tidy_psic <- function(data, level, minimal = TRUE, cols = NULL) {
+
+  if(level == "sections") {
+    data <- dplyr::filter(data, level == 1L)
+  } else if(level == "divisions") {
+    data <- dplyr::filter(data, level == 2L)
+  } else if(level == "groups") {
+    data <- dplyr::filter(data, level == 3L)
+  } else if(level == "classes") {
+    data <- dplyr::filter(data, level == 4L)
+  } else if(level == "sub-classes" | level == "sub_classes") {
+    data <- dplyr::filter(data, level == 5L)
+  }
 
   if(minimal) {
     data <- dplyr::select(
       data,
-      code = sub_class_code,
-      label = title,
-      dplyr::any_of(col)
+      value,
+      label,
+      dplyr::any_of(cols)
     )
   }
 

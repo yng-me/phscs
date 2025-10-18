@@ -68,21 +68,56 @@ utils::globalVariables(
     "sectiondesc",
     "status",
     "sub_class_title",
-    "urban_rural"
+    "urban_rural",
+    "geographic_level",
+    "income_class",
+    "year"
   )
 )
 
 
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  op.rcbms <- list(
-    rcbms.options = list(
-      classification_base_uri = "https://classification.psa.gov.ph"
+  op.phscs <- list(
+    phscs.options = list(
+      classification_base_uri = "https://classification.psa.gov.ph",
+      versions = list(
+        psgc = c("July_2025", "Q3_2025", "Q2_2025", "Q1_2025", "April_2024", "Q4_2024", "Q3_2024", "Q2_2024", "Q4_2023", "Q1_2023", "Q2_2021"),
+        pcoicop = c("2020", "2009"),
+        pcpc = "2002",
+        pscc = "2022",
+        psccs = "2018",
+        psced = "2017",
+        psic = "2019",
+        psoc = "2012"
+      ),
+      levels = list(
+        psgc = c(
+          "all",
+          "regions",
+          "provinces",
+          "hucs",
+          "cities",
+          "municipalities",
+          "sub_municipalities",
+          "barangays",
+          "income_classification",
+          "urban_rural",
+          "city_class"
+        ),
+        pcoicop = c( "all", "divisions", "groups", "class", "sub-class", "item", "subitem"),
+        pcpc = c("all", "sections", "divisions", "groups", "classes", "sub-classes", "item"),
+        pscc = c("sections", "chapters", "headings", "commodity"),
+        psccs = c("all", "section", "divisions", "groups", "classes", "sub-classes"),
+        psced = c("all", "levels", "broadfield", "narrowfield", "detailedfield"),
+        psic = c("all", "sections", "divisions", "groups", "classes", "sub-classes"),
+        psoc = c("all", "major", "sub-major", "minor", "unit")
+      )
     )
   )
 
-  to_set <- !(names(op.rcbms) %in% names(op))
-  if (any(to_set)) options(op.rcbms[to_set])
+  to_set <- !(names(op.phscs) %in% names(op))
+  if (any(to_set)) options(op.phscs[to_set])
 
   invisible()
 }

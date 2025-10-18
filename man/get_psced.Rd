@@ -5,6 +5,7 @@
 \title{Retrieve Philippine Standard Classification of Education (PSCED)}
 \usage{
 get_psced(
+  ...,
   token = NULL,
   version = NULL,
   level = NULL,

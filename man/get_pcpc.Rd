@@ -5,6 +5,7 @@
 \title{Philippine Central Product Classification (PCPC)}
 \usage{
 get_pcpc(
+  ...,
   token = NULL,
   version = NULL,
   level = NULL,

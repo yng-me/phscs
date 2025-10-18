@@ -5,6 +5,7 @@
 \title{Retrieve Philippine Standard Geographic Code (PSGC)}
 \usage{
 get_psgc(
+  ...,
   token = NULL,
   version = NULL,
   level = NULL,
@@ -14,28 +15,19 @@ get_psgc(
 )
 }
 \arguments{
-\item{token}{Character. API access token.}
+\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in .data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
 
-\item{version}{Character. PSGC version such as: \code{July_2025}, \code{Q2_2025}, \code{Q1_2025}, \code{April_2024}, \code{Q4_2024}, \code{Q3_2024}, \code{Q2_2024}, and \code{Q4_2023}, \code{Q2_2021}.}
+\item{token}{Character. API access token. If \code{NULL}, retrieves data from the local cache.}
 
-\item{level}{Character. Level of geographic data to retrieve. Available options are: \code{all}, \code{regions}, \code{provinces}, \code{municipalities}, \code{barangays}, \code{income_classification}, \code{urban_rural}, and \code{city_clas}..}
+\item{version}{Character. PSGC version such as: \code{"July_2025"}, \code{"Q2_2025"}, \code{"Q1_2025"}, \code{"April_2024"}, \code{"Q4_2024"}, \code{"Q3_2024"}, \code{"Q2_2024"}, and \code{"Q4_2023"}, \code{"Q2_2021"}. If \code{NULL}, retrieves the latest version available in the local cache.}
+
+\item{level}{Character. Level of geographic data to retrieve. Available options are: \code{"all"}, \code{"regions"}, \code{"provinces"}, \code{"hucs"} \code{"municipalities"}, \code{"sub_municipalities"} \code{"barangays"}, \code{"income_classification"}, \code{"urban_rural"}, and \code{"city_clas"}.}
 
 \item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
 
 \item{minimal}{Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.}
 
-\item{cols}{Optional. Character vector of additional columns to include when \code{minimal = FALSE}.
-
-Geographic levels
-0 - country
-1 - island group
-2 - region
-3 - province
-5 - highly urbanized city
-6 - city
-7 - municipality
-8 - district
-9 - barangay}
+\item{cols}{Optional. Character vector of additional columns to include when \code{minimal = FALSE}.}
 }
 \value{
 A data frame of PSGC geographic data.

@@ -1,23 +1,13 @@
 #' Retrieve Philippine Standard Geographic Code (PSGC)
 #'
-#' @param token Character. API access token.
-#' @param version Character. PSGC version such as: \code{July_2025}, \code{Q2_2025}, \code{Q1_2025}, \code{April_2024}, \code{Q4_2024}, \code{Q3_2024}, \code{Q2_2024}, and \code{Q4_2023}, \code{Q2_2021}.
-#' @param level Character. Level of geographic data to retrieve. Available options are: \code{all}, \code{regions}, \code{provinces}, \code{municipalities}, \code{barangays}, \code{income_classification}, \code{urban_rural}, and \code{city_clas}..
+#' @param ... See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in .data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.
+#' @param token Character. API access token. If \code{NULL}, retrieves data from the local cache.
+#' @param version Character. PSGC version such as: \code{"July_2025"}, \code{"Q2_2025"}, \code{"Q1_2025"}, \code{"April_2024"}, \code{"Q4_2024"}, \code{"Q3_2024"}, \code{"Q2_2024"}, and \code{"Q4_2023"}, \code{"Q2_2021"}. If \code{NULL}, retrieves the latest version available in the local cache.
+#' @param level Character. Level of geographic data to retrieve. Available options are: \code{"all"}, \code{"regions"}, \code{"provinces"}, \code{"hucs"} \code{"municipalities"}, \code{"sub_municipalities"} \code{"barangays"}, \code{"income_classification"}, \code{"urban_rural"}, and \code{"city_clas"}.
 #' @param harmonize Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.
 #' @param minimal Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.
 #' @param cols Optional. Character vector of additional columns to include when \code{minimal = FALSE}.
 #'
-#' Geographic levels
-#' 0 - country
-#' 1 - island group
-#' 2 - region
-#' 3 - province
-#' 5 - highly urbanized city
-#' 6 - city
-#' 7 - municipality
-#' 8 - district
-#' 9 - barangay
-
 #' @return A data frame of PSGC geographic data.
 #' @export
 #'
@@ -29,19 +19,35 @@
 
 
 
-get_psgc <- function(token = NULL, version = NULL, level = NULL, harmonize = TRUE, minimal = TRUE, cols = NULL) {
+get_psgc <- function(..., token = NULL, version = NULL, level = NULL, harmonize = TRUE, minimal = TRUE, cols = NULL) {
 
-  versions <- c("July_2025", "Q3_2025", "Q2_2025", "Q1_2025", "April_2024", "Q4_2024", "Q3_2024", "Q2_2024", "Q4_2023", "Q1_2023", "Q2_2021")
-  levels <- c("all", "regions", "provinces", "municipalities", "barangays", "income_classification", "urban_rural", "city_class")
   level_default <- "all"
 
   arg <- eval_args(
+    what = "psgc",
     version = version,
     level = level,
-    versions = versions,
-    levels = levels,
     level_default
   )
+
+  if(is.null(token)) {
+
+    data <- get_data_from_cache(
+      what = "psgc",
+      version = arg$version,
+      level = arg$level,
+      ...
+    )
+
+    data <- get_tidy_psgc(data, level = arg$level, minimal = minimal, cols = cols)
+
+    return(data)
+
+  }
+
+  if(arg$level %in% c("hucs", "cities", "sub_municipalities")) {
+    agrg$level <- "all"
+  }
 
   uri <- get_uri("psgc", arg$version, arg$level, token)
   df_res <- jsonlite::read_json(uri, simplifyVector = T)
@@ -88,8 +94,8 @@ parse_psgc <- function(data, minimal = FALSE, cols = NULL) {
         stringr::str_trim(geographic_level) == "Prov" ~ 2L,
         stringr::str_trim(geographic_level) == "City" ~ 3L,
         stringr::str_trim(geographic_level) == "Mun" ~ 4L,
-        stringr::str_trim(geographic_level) == "SubMun" ~ 6L,
-        stringr::str_trim(geographic_level) == "Bgy" ~ 7L,
+        stringr::str_trim(geographic_level) == "SubMun" ~ 5L,
+        stringr::str_trim(geographic_level) == "Bgy" ~ 6L,
         TRUE ~ NA_integer_
       ),
       region_code = stringr::str_pad(reg, width = 2, pad = "0"),
@@ -197,38 +203,71 @@ parse_psgc <- function(data, minimal = FALSE, cols = NULL) {
         "urban_rural",
         "income_class",
         "city_class",
-        "population_data"
+        "population_data",
+        cols
       )
     )
   )
 
 }
 
+get_tidy_psgc <- function(data, level, minimal, cols = NULL) {
 
-shorten_region_name <- function(data, col, which = "label") {
+  if(level == "regions") {
+    data <- dplyr::filter(data, geographic_level == 1)
+  } else if(level == "provinces") {
+    data <- dplyr::filter(data, geographic_level == 2)
+  } else if(level == "huc" | level == "hucs") {
+    data <- dplyr::filter(data, city_class == "HUC")
+  } else if(level == "cities") {
+    data <- dplyr::filter(data, geographic_level == 3)
+  } else if(level == "municipalities") {
+    data <- dplyr::filter(data, geographic_level == 4)
+  } else if(level == "sub_municipalities") {
+    data <- dplyr::filter(data, geographic_level == 5)
+  } else if(level == "barangays") {
+    data <- dplyr::filter(data, geographic_level == 6)
+  }
 
-  if(which == "label") {
+  if(minimal) {
+    data <- dplyr::select(
+      data,
+      area_code,
+      area_code_old = correspondence_code,
+      area_name,
+      dplyr::any_of(cols)
+    )
+  }
+
+  data
+}
+
+shorten_region_name <- function(data, which = c("label", "number"), col = "area_name") {
+
+  match.arg(which, c("label", "number"))
+
+  if(which[1] == "label") {
 
     dplyr::mutate(
       data,
-      {{col}} := dplyr::if_else(
-        grepl("\\(", {{col}}),
-        stringr::str_remove_all(stringr::str_extract({{col}}, "\\(.*?\\)"), "[\\(\\)]"),
-        {{col}}
+      !!as.name(col) := dplyr::if_else(
+        grepl("\\(", !!as.name(col)),
+        stringr::str_remove_all(stringr::str_extract(!!as.name(col), "\\(.*?\\)"), "[\\(\\)]"),
+        !!as.name(col)
       )
     )
 
-  } else if (which == "number") {
+  } else if (which[1] == "number") {
 
     dplyr::mutate(
       data,
-      {{col}} := dplyr::if_else(
-        grepl("^Region | Region$", {{col}}),
-        stringr::str_split_i(stringr::str_remove_all({{col}}, "^Region |" ), pattern = " ", i = 1),
+      !!as.name(col) := dplyr::if_else(
+        grepl("^Region | Region$", !!as.name(col)),
+        stringr::str_split_i(stringr::str_remove_all(!!as.name(col), "^Region |" ), pattern = " ", i = 1),
         dplyr::if_else(
-          grepl("\\(", {{col}}),
-          stringr::str_remove_all(stringr::str_extract({{col}}, "\\(.*?\\)"), "[\\(\\)]"),
-          {{col}}
+          grepl("\\(", !!as.name(col)),
+          stringr::str_remove_all(stringr::str_extract(!!as.name(col), "\\(.*?\\)"), "[\\(\\)]"),
+          !!as.name(col)
         )
       )
     )

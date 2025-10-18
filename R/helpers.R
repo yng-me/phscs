@@ -1,5 +1,5 @@
 get_base_uri <- function(which) {
-  base_uri <- getOption('rcbms.options')$classification_base_uri
+  base_uri <- getOption('phscs.options')$classification_base_uri
   paste0(base_uri, "/", which)
 }
 
@@ -17,6 +17,7 @@ get_data <- function(
   what,
   version,
   level,
+  ...,
   token = NULL,
   harmonize = TRUE,
   minimal = TRUE,
@@ -25,14 +26,18 @@ get_data <- function(
 
   if(is.null(token)) {
 
-    get_data_from_cache(
+    data <- get_data_from_cache(
       what = what,
       version = version,
       level = level,
-      harmonize = harmonize,
-      minimal = minimal,
-      cols = cols
+      ...
     )
+
+    parse_tidy_fn <- eval(parse(text = paste0("get_tidy_", what)))
+
+    data <- parse_tidy_fn(data, level = level, minimal = minimal, cols = cols)
+
+    return(data)
 
   }
 
@@ -68,80 +73,35 @@ get_data <- function(
 }
 
 
-get_data_from_cache <- function(
-  what,
-  version,
-  level,
-  token = NULL,
-  harmonize = TRUE,
-  minimal = TRUE,
-  cols = NULL
-) {
+get_data_from_cache <- function(what, version, level, ...) {
 
-  path <- file.path(
-    "extdata",
-    what,
-    version,
-    glue::glue("{what}_{level}.parquet")
-  )
+  filename <- glue::glue("{what}_{tolower(version)}.parquet")
 
-  file <- system.file(path, package = "phscs")
-
-  if(file.exists(file)) {
-    dplyr::collect(arrow::open_dataset(file))
+  path <- system.file(package = "phscs")
+  if(!grepl("inst", path)) {
+    path <- file.path(path, "inst", "extdata")
   } else {
-    get_data_from_remote(
-      file,
-      path,
-      what = what,
-      version = version,
-      level = level,
-      token = token,
-      harmonize = harmonize,
-      minimal = minimal,
-      cols = cols
-    )
+    path <- file.path(path, "extdata")
   }
 
-}
+  if(!dir.exists(path)) { dir.create(path, recursive = TRUE) }
+  file <- file.path(path, filename)
 
+  if(file.exists(file)) {
+    data <- arrow::open_dataset(file)
+  } else {
+    data <- get_data_from_remote(path = file, filename = filename)
+  }
 
-get_data_from_remote <- function(
-  file,
-  path,
-  what,
-  version,
-  level,
-  token = NULL,
-  harmonize = TRUE,
-  minimal = TRUE,
-  cols = NULL
-) {
-
-  utils::download.file(
-    glue::glue("https://github.com/yng-me/rcdf/tree/main/inst/{path}"),
-    file
-  )
-
-  dplyr::collect(arrow::open_dataset(file))
+  dplyr::collect(dplyr::filter(data, ...))
 
 }
 
 
+get_data_from_remote <- function(path, filename, ...) {
+  url <- glue::glue("https://github.com/yng-me/phscs/raw/refs/heads/main/parquet/{filename}")
+  utils::download.file(url, path, quiet = TRUE)
 
-tidy_pgcs <- function(data, geographic_level, ...) {
-  dplyr::transmute(
-    data,
-    area_code = psgc_code,
-    correspondence_code = dplyr::if_else(stringr::str_trim(correspondence_code) == "", NA_character_, stringr::str_trim(correspondence_code)),
-    area_name,
-    area_name_old = dplyr::if_else(stringr::str_trim(old_name) == "", NA_character_, stringr::str_trim(old_name)),
-    urban_rural = dplyr::if_else(stringr::str_trim(urban_rural) == "", NA_character_, stringr::str_trim(urban_rural)),
-    island_region = stringr::str_trim(island_region),
-    geographic_level = geographic_level,
-    population_data = purrr::map(population_data, \(x) {
-      jsonlite::fromJSON(x) |> dplyr::select(year, population)
-    })
-  )
+  arrow::open_dataset(path)
+
 }
-

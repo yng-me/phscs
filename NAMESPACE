@@ -2,8 +2,6 @@
 
 export(get_pcoicop)
 export(get_pcpc)
-export(get_pscc)
-export(get_psccs)
 export(get_psced)
 export(get_psgc)
 export(get_psic)

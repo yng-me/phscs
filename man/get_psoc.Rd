@@ -5,6 +5,7 @@
 \title{Retrieve Philippine Standard Occupational Classification (PSOC)}
 \usage{
 get_psoc(
+  ...,
   token = NULL,
   version = NULL,
   level = NULL,

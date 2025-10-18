@@ -1,8 +1,13 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.*\.parquet
 
 .DS_Store
-.parquet
 
+inst
+exdata
 playground
-data/
+parquet
+data
+
+^LICENSE\.md$
