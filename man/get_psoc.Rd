@@ -2,7 +2,7 @@
 % Please edit documentation in R/psoc.R
 \name{get_psoc}
 \alias{get_psoc}
-\title{Retrieve Philippine Standard Occupational Classification (PSOC)}
+\title{Philippine Standard Occupational Classification (PSOC)}
 \usage{
 get_psoc(
   ...,
@@ -15,11 +15,13 @@ get_psoc(
 )
 }
 \arguments{
+\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+
 \item{token}{Character. API access token.}
 
-\item{version}{Character. Version of the PSOC dataset. Default is \code{"2012"}.}
+\item{version}{Character. Version of the PSOC dataset. Default is \code{NULL}. If \code{NULL}, the latest version is used.}
 
-\item{level}{Character. Classification level (e.g., \code{"unit"}).}
+\item{level}{Character. Classification level such as \code{"all"}, \code{"major"}, \code{"sub-major"}, \code{"minor"}, and \code{"unit"}.}
 
 \item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
 
@@ -31,10 +33,21 @@ get_psoc(
 A data frame of PSOC classifications.
 }
 \description{
-Retrieve Philippine Standard Occupational Classification (PSOC)
+Philippine Standard Occupational Classification (PSOC)
 }
 \examples{
 \dontrun{
 get_psoc(token = "your_api_token")
 }
+# If token is not provided, the function will fetch from local cache or
+# download the latest version from remote repo
+psoc <- get_psoc()
+
+# Get specific level
+psoc_filtered <- get_psoc(level = "major")
+psoc_filtered
+
+}
+\references{
+\url{https://psa.gov.ph/classification/psoc}
 }

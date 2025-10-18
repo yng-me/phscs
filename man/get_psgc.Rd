@@ -2,7 +2,7 @@
 % Please edit documentation in R/psgc.R
 \name{get_psgc}
 \alias{get_psgc}
-\title{Retrieve Philippine Standard Geographic Code (PSGC)}
+\title{Philippine Standard Geographic Code (PSGC)}
 \usage{
 get_psgc(
   ...,
@@ -15,13 +15,13 @@ get_psgc(
 )
 }
 \arguments{
-\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in .data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
 
 \item{token}{Character. API access token. If \code{NULL}, retrieves data from the local cache.}
 
 \item{version}{Character. PSGC version such as: \code{"July_2025"}, \code{"Q2_2025"}, \code{"Q1_2025"}, \code{"April_2024"}, \code{"Q4_2024"}, \code{"Q3_2024"}, \code{"Q2_2024"}, and \code{"Q4_2023"}, \code{"Q2_2021"}. If \code{NULL}, retrieves the latest version available in the local cache.}
 
-\item{level}{Character. Level of geographic data to retrieve. Available options are: \code{"all"}, \code{"regions"}, \code{"provinces"}, \code{"hucs"} \code{"municipalities"}, \code{"sub_municipalities"} \code{"barangays"}, \code{"income_classification"}, \code{"urban_rural"}, and \code{"city_clas"}.}
+\item{level}{Character. Level of geographic data to retrieve. Available options are: \code{"all"}, \code{"regions"}, \code{"provinces"}, \code{"hucs"} \code{"municipalities"}, \code{"sub_municipalities"} \code{"barangays"}, \code{"income_classification"}, \code{"urban_rural"}, and \code{"city_class"}.}
 
 \item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
 
@@ -33,11 +33,22 @@ get_psgc(
 A data frame of PSGC geographic data.
 }
 \description{
-Retrieve Philippine Standard Geographic Code (PSGC)
+Philippine Standard Geographic Code (PSGC)
 }
 \examples{
 \dontrun{
 get_psgc(token = "your_api_token")
 }
 
+# If token is not provided, the function will fetch from local cache or
+# download the latest version from remote repo
+psgc <- get_psgc()
+
+# Get specific level
+psgc_regions <- get_psgc(level = "regions")
+psgc_regions
+
+}
+\references{
+\url{https://psa.gov.ph/classification/psgc}
 }

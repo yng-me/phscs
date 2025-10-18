@@ -1,9 +1,9 @@
-#' Retrieve Philippine Standard Geographic Code (PSGC)
+#' Philippine Standard Geographic Code (PSGC)
 #'
-#' @param ... See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in .data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.
+#' @param ... See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.
 #' @param token Character. API access token. If \code{NULL}, retrieves data from the local cache.
 #' @param version Character. PSGC version such as: \code{"July_2025"}, \code{"Q2_2025"}, \code{"Q1_2025"}, \code{"April_2024"}, \code{"Q4_2024"}, \code{"Q3_2024"}, \code{"Q2_2024"}, and \code{"Q4_2023"}, \code{"Q2_2021"}. If \code{NULL}, retrieves the latest version available in the local cache.
-#' @param level Character. Level of geographic data to retrieve. Available options are: \code{"all"}, \code{"regions"}, \code{"provinces"}, \code{"hucs"} \code{"municipalities"}, \code{"sub_municipalities"} \code{"barangays"}, \code{"income_classification"}, \code{"urban_rural"}, and \code{"city_clas"}.
+#' @param level Character. Level of geographic data to retrieve. Available options are: \code{"all"}, \code{"regions"}, \code{"provinces"}, \code{"hucs"} \code{"municipalities"}, \code{"sub_municipalities"} \code{"barangays"}, \code{"income_classification"}, \code{"urban_rural"}, and \code{"city_class"}.
 #' @param harmonize Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.
 #' @param minimal Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.
 #' @param cols Optional. Character vector of additional columns to include when \code{minimal = FALSE}.
@@ -11,13 +11,21 @@
 #' @return A data frame of PSGC geographic data.
 #' @export
 #'
+#' @references \url{https://psa.gov.ph/classification/psgc}
+#'
 #' @examples
 #' \dontrun{
 #' get_psgc(token = "your_api_token")
 #' }
 #'
-
-
+#' # If token is not provided, the function will fetch from local cache or
+#' # download the latest version from remote repo
+#' psgc <- get_psgc()
+#'
+#' # Get specific level
+#' psgc_regions <- get_psgc(level = "regions")
+#' psgc_regions
+#'
 
 get_psgc <- function(..., token = NULL, version = NULL, level = NULL, harmonize = TRUE, minimal = TRUE, cols = NULL) {
 
@@ -80,6 +88,61 @@ get_psgc <- function(..., token = NULL, version = NULL, level = NULL, harmonize 
   df
 
 }
+
+
+#' Shorten region name
+#'
+#' @description This function shortens the region names in a PSGC data frame.
+#'
+#'
+#' @param data A data frame containing PSGC data.
+#' @param which Character. Specifies whether to shorten the region name by label or number. Options are \code{"label"} or \code{"number"}.
+#' @param col Character. The name of the column containing the area names. Default is \code{"area_name"}.
+#'
+#' @returns A data frame with the region names shortened based on the specified \code{which} argument.
+#' @export
+#'
+#' @examples
+#' regions <- get_psgc(level = "regions")
+#' regions |>
+#'  shorten_region_name()
+#'
+#' regions |>
+#'  shorten_region_name(which = "number")
+
+shorten_region_name <- function(data, which = c("label", "number"), col = "area_name") {
+
+  match.arg(which, c("label", "number"))
+
+  if(which[1] == "label") {
+
+    dplyr::mutate(
+      data,
+      !!as.name(col) := dplyr::if_else(
+        grepl("\\(", !!as.name(col)),
+        stringr::str_remove_all(stringr::str_extract(!!as.name(col), "\\(.*?\\)"), "[\\(\\)]"),
+        !!as.name(col)
+      )
+    )
+
+  } else if (which[1] == "number") {
+
+    dplyr::mutate(
+      data,
+      !!as.name(col) := dplyr::if_else(
+        grepl("^Region | Region$", !!as.name(col)),
+        stringr::str_split_i(stringr::str_remove_all(!!as.name(col), "^Region |" ), pattern = " ", i = 1),
+        dplyr::if_else(
+          grepl("\\(", !!as.name(col)),
+          stringr::str_remove_all(stringr::str_extract(!!as.name(col), "\\(.*?\\)"), "[\\(\\)]"),
+          !!as.name(col)
+        )
+      )
+    )
+
+  }
+}
+
 
 
 parse_psgc <- function(data, minimal = FALSE, cols = NULL) {
@@ -241,38 +304,4 @@ get_tidy_psgc <- function(data, level, minimal, cols = NULL) {
 
   data
 }
-
-shorten_region_name <- function(data, which = c("label", "number"), col = "area_name") {
-
-  match.arg(which, c("label", "number"))
-
-  if(which[1] == "label") {
-
-    dplyr::mutate(
-      data,
-      !!as.name(col) := dplyr::if_else(
-        grepl("\\(", !!as.name(col)),
-        stringr::str_remove_all(stringr::str_extract(!!as.name(col), "\\(.*?\\)"), "[\\(\\)]"),
-        !!as.name(col)
-      )
-    )
-
-  } else if (which[1] == "number") {
-
-    dplyr::mutate(
-      data,
-      !!as.name(col) := dplyr::if_else(
-        grepl("^Region | Region$", !!as.name(col)),
-        stringr::str_split_i(stringr::str_remove_all(!!as.name(col), "^Region |" ), pattern = " ", i = 1),
-        dplyr::if_else(
-          grepl("\\(", !!as.name(col)),
-          stringr::str_remove_all(stringr::str_extract(!!as.name(col), "\\(.*?\\)"), "[\\(\\)]"),
-          !!as.name(col)
-        )
-      )
-    )
-
-  }
-}
-
 

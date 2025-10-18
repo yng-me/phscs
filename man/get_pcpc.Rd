@@ -15,11 +15,13 @@ get_pcpc(
 )
 }
 \arguments{
+\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+
 \item{token}{Character. API access token.}
 
-\item{version}{Character. Version of the PCPC to retrieve. Default is "2002".}
+\item{version}{Character. Version of the PCPC to retrieve. Default is \code{NULL}. If \code{NULL}, the latest version is used.}
 
-\item{level}{Character. Level of detail to retrieve. Options are "all", "sections", "divisions", "groups", "classes", "sub-classes", "item". Default is "all".}
+\item{level}{Character. Level of detail to retrieve. Options are \code{"all"}, \code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"}, \code{"sub-classes"}, and \code{"item"}.}
 
 \item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
 
@@ -37,4 +39,15 @@ Philippine Central Product Classification (PCPC)
 \dontrun{
 get_pcpc(token = "your_api_token")
 }
+
+# If token is not provided, the function will fetch from local cache or
+# download the latest version from remote repo
+pcpc <- get_pcpc()
+
+# Get specific level
+pcpc_filtered <- get_pcpc(level = "sections")
+pcpc_filtered
+}
+\references{
+\url{https://psa.gov.ph/classification/pcpc}
 }

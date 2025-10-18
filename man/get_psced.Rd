@@ -2,7 +2,7 @@
 % Please edit documentation in R/psced.R
 \name{get_psced}
 \alias{get_psced}
-\title{Retrieve Philippine Standard Classification of Education (PSCED)}
+\title{Philippine Standard Classification of Education (PSCED)}
 \usage{
 get_psced(
   ...,
@@ -15,11 +15,13 @@ get_psced(
 )
 }
 \arguments{
+\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+
 \item{token}{Character. API access token.}
 
-\item{version}{Character. Version of the PSCED dataset. Default is \code{"2017"}.}
+\item{version}{Character. Version of the PSCED dataset. Default is \code{NULL}. If \code{NULL}, the latest version is used.}
 
-\item{level}{Character. Classification level. Default is \code{"detailedfield"}.}
+\item{level}{Character. Classification levels such as \code{"all"}, \code{"levels"}, \code{"broadfield"}, \code{"narrowfield"}, and \code{"detailedfield"}. Default is \code{"detailedfield"}.}
 
 \item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
 
@@ -31,10 +33,20 @@ get_psced(
 A data frame of PSCED classifications.
 }
 \description{
-Retrieve Philippine Standard Classification of Education (PSCED)
+Philippine Standard Classification of Education (PSCED)
 }
 \examples{
 \dontrun{
 get_psced(token = "your_api_token")
 }
+# If token is not provided, the function will fetch from local cache or
+# download the latest version from remote repo
+psced <- get_psced()
+
+# Get specific level
+psced_filtered <- get_psced(level = "levels")
+psced_filtered
+}
+\references{
+\url{https://psa.gov.ph/classification/psced}
 }

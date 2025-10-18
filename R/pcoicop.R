@@ -1,8 +1,9 @@
 #' Philippine Classification of Individual Consumption According to Purpose (PCOICOP)
 #'
+#' @param ... See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.
 #' @param token Character. API access token.
-#' @param version Character. Version of the PCOICOP to retrieve. Default is "2020".
-#' @param level Character. Level of detail to retrieve. Options are "all", "divisions", "groups", "class", "sub-class", "item", "subitem". Default is "all".
+#' @param version Character. Version of the PCOICOP to retrieve. Default is \code{NULL}. If \code{NULL}, the latest version is used.
+#' @param level Character. Level of detail to retrieve. Options are \code{"all"}, \code{"divisions"}, \code{"groups"}, \code{"class"}, \code{"sub-class"}, \code{"item"}, and \code{"subitem"}.
 #' @param harmonize Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.
 #' @param minimal Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.
 #' @param cols Optional. Character vector of additional columns to include when \code{minimal = FALSE}.
@@ -10,12 +11,22 @@
 #' @return A tibble containing the requested PCOICOP data.
 #' @export
 #'
+#' @references \url{https://psa.gov.ph/classification/pcoicop}
+#'
 #' @examples
 #' \dontrun{
 #' get_pcoicop(token = "your_api_token")
 #' }
+#' # If token is not provided, the function will fetch from local cache or
+#' # download the latest version from remote repo
+#' pcoicop <- get_pcoicop()
+#'
+#' # Get specific level
+#' pcoicop_filtered <- get_pcoicop(level = "divisions")
+#' pcoicop_filtered
 
-get_pcoicop <- function(..., token = NULL, version = "2020", level = "all", harmonize = TRUE, minimal = TRUE, cols = NULL) {
+
+get_pcoicop <- function(..., token = NULL, version = NULL, level = NULL, harmonize = TRUE, minimal = TRUE, cols = NULL) {
 
   level_default <- "all"
 

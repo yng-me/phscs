@@ -2,7 +2,7 @@
 % Please edit documentation in R/psic.R
 \name{get_psic}
 \alias{get_psic}
-\title{Retrieve Philippine Standard Industrial Classification (PSIC)}
+\title{Philippine Standard Industrial Classification (PSIC)}
 \usage{
 get_psic(
   ...,
@@ -15,11 +15,13 @@ get_psic(
 )
 }
 \arguments{
+\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+
 \item{token}{Character. API access token.}
 
-\item{version}{Character. Version of the PSIC dataset. Default is \code{"2019"}.}
+\item{version}{Character. Version of the PSIC dataset. Default is \code{NULL}. If \code{NULL}, the latest version is used.}
 
-\item{level}{Character. Classification level (e.g., \code{"sub-classes"}).}
+\item{level}{Character. Classification level such as \code{"all"}, \code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"}, and \code{"sub-classes"}.}
 
 \item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
 
@@ -31,10 +33,20 @@ get_psic(
 A data frame of PSIC classifications.
 }
 \description{
-Retrieve Philippine Standard Industrial Classification (PSIC)
+Philippine Standard Industrial Classification (PSIC)
 }
 \examples{
 \dontrun{
 get_psic(token = "your_api_token")
 }
+# If token is not provided, the function will fetch from local cache or
+# download the latest version from remote repo
+psic <- get_psic()
+
+# Get specific level
+psic_filtered <- get_psic(level = "sections")
+psic_filtered
+}
+\references{
+\url{https://psa.gov.ph/classification/psic}
 }

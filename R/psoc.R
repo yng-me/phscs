@@ -1,19 +1,29 @@
-#' Retrieve Philippine Standard Occupational Classification (PSOC)
+#' Philippine Standard Occupational Classification (PSOC)
 #'
+#' @param ... See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.
 #' @param token Character. API access token.
-#' @param version Character. Version of the PSOC dataset. Default is \code{"2012"}.
-#' @param level Character. Classification level (e.g., \code{"unit"}).
+#' @param version Character. Version of the PSOC dataset. Default is \code{NULL}. If \code{NULL}, the latest version is used.
+#' @param level Character. Classification level such as \code{"all"}, \code{"major"}, \code{"sub-major"}, \code{"minor"}, and \code{"unit"}.
 #' @param harmonize Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.
 #' @param minimal Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.
 #' @param cols Optional. Character vector of additional columns to include when \code{minimal = FALSE}.
 #'
 #' @return A data frame of PSOC classifications.
 #' @export
+#' @references \url{https://psa.gov.ph/classification/psoc}
 #'
 #' @examples
 #' \dontrun{
 #' get_psoc(token = "your_api_token")
 #' }
+#' # If token is not provided, the function will fetch from local cache or
+#' # download the latest version from remote repo
+#' psoc <- get_psoc()
+#'
+#' # Get specific level
+#' psoc_filtered <- get_psoc(level = "major")
+#' psoc_filtered
+#'
 
 get_psoc <- function(..., token = NULL, version = NULL, level = NULL, harmonize = TRUE, minimal = TRUE, cols = NULL) {
 

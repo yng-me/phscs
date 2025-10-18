@@ -7,19 +7,21 @@
 get_pcoicop(
   ...,
   token = NULL,
-  version = "2020",
-  level = "all",
+  version = NULL,
+  level = NULL,
   harmonize = TRUE,
   minimal = TRUE,
   cols = NULL
 )
 }
 \arguments{
+\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+
 \item{token}{Character. API access token.}
 
-\item{version}{Character. Version of the PCOICOP to retrieve. Default is "2020".}
+\item{version}{Character. Version of the PCOICOP to retrieve. Default is \code{NULL}. If \code{NULL}, the latest version is used.}
 
-\item{level}{Character. Level of detail to retrieve. Options are "all", "divisions", "groups", "class", "sub-class", "item", "subitem". Default is "all".}
+\item{level}{Character. Level of detail to retrieve. Options are \code{"all"}, \code{"divisions"}, \code{"groups"}, \code{"class"}, \code{"sub-class"}, \code{"item"}, and \code{"subitem"}.}
 
 \item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
 
@@ -37,4 +39,14 @@ Philippine Classification of Individual Consumption According to Purpose (PCOICO
 \dontrun{
 get_pcoicop(token = "your_api_token")
 }
+# If token is not provided, the function will fetch from local cache or
+# download the latest version from remote repo
+pcoicop <- get_pcoicop()
+
+# Get specific level
+pcoicop_filtered <- get_pcoicop(level = "divisions")
+pcoicop_filtered
+}
+\references{
+\url{https://psa.gov.ph/classification/pcoicop}
 }

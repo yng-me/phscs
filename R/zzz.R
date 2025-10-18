@@ -71,7 +71,29 @@ utils::globalVariables(
     "urban_rural",
     "geographic_level",
     "income_class",
-    "year"
+    "year",
+    "value",
+    "label",
+    "broadfield_title",
+    "broadfielddesc",
+    "class_title",
+    "cols",
+    "group",
+    "group_title",
+    "item",
+    "level_title",
+    "major_title",
+    "majordesc",
+    "minor_desc",
+    "minor_title",
+    "name",
+    "narrowfield_title",
+    "narrowfielddesc",
+    "section_title",
+    "submajor_title",
+    "submajordesc",
+    "unit_title",
+    "unitdesc"
   )
 )
 
