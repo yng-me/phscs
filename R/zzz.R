@@ -127,7 +127,7 @@ utils::globalVariables(
           "urban_rural",
           "city_class"
         ),
-        pcoicop = c( "all", "divisions", "groups", "class", "sub-class", "item", "subitem"),
+        pcoicop = c("all", "divisions", "groups", "class", "sub-class", "item", "subitem"),
         pcpc = c("all", "sections", "divisions", "groups", "classes", "sub-classes", "item"),
         pscc = c("sections", "chapters", "headings", "commodity"),
         psccs = c("all", "section", "divisions", "groups", "classes", "sub-classes"),
