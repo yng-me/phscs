@@ -8,7 +8,7 @@ test_that("get_psgc retrieves data correctly", {
   expect_equal(dim(psgc_data), c(43769, 3))
   expect_identical(names(psgc_data), c("area_code", "area_code_old", "area_name"))
 
-  psgc_data_with_cols <- get_psgc(cols = "population_data")
+  psgc_data_with_cols <- get_psgc(cols = "geographic_level")
   expect_equal(dim(psgc_data_with_cols), c(43769, 4))
 
 })
@@ -33,7 +33,7 @@ test_that("get_psgc retrieves data correctly with minimal set to FALSE", {
   skip_if_offline(host = "github.com")
 
   psgc_data <- get_psgc(minimal = FALSE)
-  expect_equal(dim(psgc_data), c(43769, 14))
+  expect_equal(dim(psgc_data), c(43769, 13))
 
 })
 

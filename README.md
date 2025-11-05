@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/yng-me/phscs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yng-me/phscs/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/phscs)](https://CRAN.R-project.org/package=phscs)
 <!-- badges: end -->
 
 The goal of `phscs` is to provide a unified interface to access and
@@ -22,8 +24,14 @@ data in R.
 
 ## Installation
 
-You can install the development version of `phscs` from GitHub using the
-`pak` package:
+Install from CRAN:
+
+``` r
+install.packages("phscs")
+```
+
+You can also install the development version of `phscs` from GitHub
+using the `pak` package:
 
 ``` r
 # install.packages("pak")

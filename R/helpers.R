@@ -6,12 +6,11 @@ get_base_uri <- function(which) {
 get_uri <- function(which, version = NULL, level, token) {
   uri <- get_base_uri(which)
   if(is.null(version)) {
-    glue::glue("{uri}/{level}?token={token}")
+    paste0(uri, "/", level, "?token=", token)
   } else {
-    glue::glue("{uri}/{version}/{level}?token={token}")
+    paste0(uri, "/", version, "/", level, "?token=", token)
   }
 }
-
 
 get_data <- function(
   what,
@@ -29,7 +28,6 @@ get_data <- function(
     data <- get_data_from_cache(
       what = what,
       version = version,
-      level = level,
       ...
     )
 
@@ -73,34 +71,8 @@ get_data <- function(
 }
 
 
-get_data_from_cache <- function(what, version, level, ...) {
-
-  filename <- glue::glue("{what}_{tolower(version)}.parquet")
-
-  path <- system.file(package = "phscs")
-
-  if(!grepl("extdata", path)) {
-    path <- file.path(path, "extdata")
-  }
-
-  if(!dir.exists(path)) { dir.create(path, recursive = TRUE) }
-  file <- file.path(path, filename)
-
-  if(file.exists(file)) {
-    data <- arrow::open_dataset(file)
-  } else {
-    data <- get_data_from_remote(path = file, filename = filename)
-  }
-
+get_data_from_cache <- function(what, version, ...) {
+  data <- eval(parse(text = paste(what, tolower(version), sep = "_")))
   dplyr::collect(dplyr::filter(data, ...))
-
-}
-
-
-get_data_from_remote <- function(path, filename, ...) {
-  url <- glue::glue("https://github.com/yng-me/phscs/raw/refs/heads/main/parquet/{filename}")
-  utils::download.file(url, path, quiet = TRUE)
-
-  arrow::open_dataset(path)
 
 }

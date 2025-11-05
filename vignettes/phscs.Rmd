@@ -1,5 +1,5 @@
 ---
-title: "Using the `phscs` Package"
+title: "Using the phscs Package"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using the `phscs` Package}
@@ -153,7 +153,6 @@ psced_broadfield |>
   gt::gt() |> 
   gt::tab_options(table.align = "left")
 ```
-
 
 ## Philippine Classification of Individual Consumption According to Purpose (PCOICOP)
 
