@@ -1,8 +1,8 @@
 ---
-title: "Using the phscs Package"
+title: "Getting Started with phscs"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using the `phscs` Package}
+  %\VignetteIndexEntry{Getting Started with phscs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,158 +14,197 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r setup, echo=FALSE}
+library(phscs)
+```
+
+The `phscs` package provides a single, consistent interface to seven Philippine Statistical Authority (PSA) classification systems. All data is **bundled with the package** — no internet connection or API token is required.
+
+| Function | Classification | Source |
+|---|---|---|
+| `get_psgc()` | Philippine Standard Geographic Code | PSA via `psgc` |
+| `get_psic()` | Philippine Standard Industrial Classification | PSA |
+| `get_psoc()` | Philippine Standard Occupational Classification | PSA |
+| `get_psced()` | Philippine Standard Classification of Education | PSA |
+| `get_pcoicop()` | Phil. Classification of Individual Consumption According to Purpose | PSA |
+| `get_pcpc()` | Philippine Central Product Classification | PSA |
+| `get_psccs()` | Philippine Standard Commodity Classification System | PSA |
+
 ## Installation
 
-You can install the development version of `phscs` from GitHub using the `pak` package:
+Install from CRAN:
+
+```r
+install.packages("phscs")
+```
+
+Or install the development version from GitHub:
 
 ```r
 # install.packages("pak")
 pak::pak("yng-me/phscs")
 ```
 
-```{r setup, echo=FALSE}
-library(phscs)
-```
+## Common interface
 
+All classification functions share the same parameters:
+
+| Parameter | Default | Description |
+|---|---|---|
+| `version` | latest | Which edition of the standard to use (e.g. `"2019"`, `"2009"`) |
+| `level` | most detailed | Which level of the hierarchy to return |
+| `minimal` | `TRUE` | Return only `value` and `label`; set `FALSE` for all columns |
+| `cols` | `NULL` | Extra columns to include alongside `value` and `label` (e.g. `"description"`) |
+
+Every classification has a `description` column available via `cols = "description"`:
+
+```{r common-cols}
+get_psic(level = "sections", cols = "description") |>
+  head(5) |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
 
 ## Philippine Standard Geographic Code (PSGC)
 
-One of the main functions in the `phscs` package is `get_psgc()`, which retrieves the [Philippine Standard Geographic Code](https://psa.gov.ph/classification/psgc) (PSGC) data. This function allows you to specify various parameters such as the version, level of geographic data, and whether to harmonize or minimize the dataset.
+`get_psgc()` is re-exported from the [`psgc`](https://cran.r-project.org/package=psgc) package. For a full walkthrough — releases, crosswalks, population data — see `vignette("psgc", package = "psgc")`.
 
-```{r psgc-example, eval=FALSE}
-# Retrieve PSGC data
-psgc_data <- get_psgc()
+Use `geographic_level` to filter to a specific tier:
 
-psgc_data |> 
-  head(10) |> 
-  gt::gt() |> 
+```{r psgc-regions}
+psgc_regions <- get_psgc(geographic_level = "region")
+
+psgc_regions |>
+  gt::gt() |>
   gt::tab_options(table.align = "left")
 ```
 
-You can also retrieve data for specific levels, such as regions, provinces, municipalities, and barangays.
+Use `shorten_region_name()` to compact long region labels for plots or tables:
 
-```{r psgc-levels}
-psgc_provinces <- get_psgc(level = "provinces")
-psgc_regions <- get_psgc(level = "regions")
-
-psgc_regions |> 
-  head(10) |> 
-  gt::gt() |> 
+```{r psgc-shorten}
+psgc_regions |>
+  shorten_region_name(which = "label") |>
+  head(5) |>
+  gt::gt() |>
   gt::tab_options(table.align = "left")
 ```
 
+To filter rows by code, use standard R subsetting after the call:
 
-You can also filter the data using `dplyr` syntax. For example, to get all areas in the region with code "10":
-
-```{r psgc-filter}
-# Retrieve PSGC data for areas in region 10
-psgc_region_10 <- get_psgc(grepl("^10", area_code))
-
-psgc_region_10 |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
+```{r psgc-filter, eval=FALSE}
+# All areas whose PSGC code starts with "10" (Region X)
+psgc_all <- get_psgc()
+psgc_region_10 <- psgc_all[grepl("^10", psgc_all$psgc_code), ]
 ```
-
-
-You can also retrieve the full PSGC dataset with all available columns by setting `minimal = FALSE` or by specifying additional columns to include:
-
-```{r psgc-cols}
-# Retrieve full PSGC data
-psgc_full_data <- get_psgc(minimal = FALSE)
-
-# Retrieve PSGC data with additional columns
-psgc_data_with_cols <- get_psgc(
-  cols = c(
-    "area_code", 
-    "area_name", 
-    "region_code", 
-    "province_code"
-  )
-)
-
-psgc_data_with_cols |> 
-  head(10) |> 
-  gt::gt() |> 
-  gt::tab_options(table.align = "left")
-```
-
-
 
 ## Philippine Standard Industrial Classification (PSIC)
 
-The `get_psic()` function retrieves the [Philippine Standard Industrial Classification](https://psa.gov.ph/classification/psic) (PSIC) data. You can specify the level of detail you want, such as sections or divisions.
+The [PSIC](https://psa.gov.ph/classification/psic) organises economic activities into sections, divisions, groups, classes, and sub-classes. The default returns the most detailed level.
 
-```{r psic-example}
-# Retrieve PSIC data
-psic_data <- get_psic()
-
-# Retrieve PSIC data for specific levels
-psic_sections <- get_psic(level = "sections")
-
-psic_sections |> 
-  head(10) |> 
-  gt::gt() |> 
+```{r psic-default}
+get_psic() |>
+  head(10) |>
+  gt::gt() |>
   gt::tab_options(table.align = "left")
 ```
 
+```{r psic-sections}
+get_psic(level = "sections") |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
 
 ## Philippine Standard Occupational Classification (PSOC)
 
-The `get_psoc()` function retrieves the [Philippine Standard Occupational Classification](https://psa.gov.ph/classification/psoc) (PSOC) data. Similar to PSIC, you can specify the level of detail you want.
+The [PSOC](https://psa.gov.ph/classification/psoc) classifies occupations into major, sub-major, minor, and unit groups. The default returns unit groups.
 
-```{r psoc-example}
-# Retrieve PSOC data
-psoc_data <- get_psoc()
-
-# Retrieve PSOC data for specific levels
-psoc_major <- get_psoc(level = "major")
-
-psoc_major |> 
-  head(10) |> 
-  gt::gt() |> 
+```{r psoc-default}
+get_psoc() |>
+  head(10) |>
+  gt::gt() |>
   gt::tab_options(table.align = "left")
 ```
 
-
-## Philippine Standard Classification for Education (PSCED)
-
-The `get_psced()` function retrieves the [Philippine Standard Classification for Education](https://psa.gov.ph/classification/psced) (PSCED) data. You can specify the level of detail you want, such as broadfield or narrowfield.
-
-```{r pscc-example}
-# Retrieve PSCED data
-psced_data <- get_psced()
-psced_data |> 
-  head(10) |> 
-  gt::gt() |> 
+```{r psoc-major}
+get_psoc(level = "major") |>
+  gt::gt() |>
   gt::tab_options(table.align = "left")
 ```
 
+## Philippine Standard Classification of Education (PSCED)
 
-You can also retrieve data for specific levels, such as `broadfield` or `narrowfield`:
+The [PSCED](https://psa.gov.ph/classification/psced) classifies fields of study into education levels, broad fields, narrow fields, and detailed fields. The default returns detailed fields.
+
+```{r psced-default}
+get_psced() |>
+  head(10) |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
 
 ```{r psced-levels}
-# Retrieve PSCED data for specific levels
-psced_broadfield <- get_psced(level = "broadfield")
-
-psced_broadfield |> 
-  head(10) |> 
-  gt::gt() |> 
+get_psced(level = "levels") |>
+  gt::gt() |>
   gt::tab_options(table.align = "left")
 ```
 
 ## Philippine Classification of Individual Consumption According to Purpose (PCOICOP)
 
-The `get_pcoicop()` function retrieves the [Philippine Classification of Individual Consumption According to Purpose](https://psa.gov.ph/classification/pcoicop) (PCOICOP) data. You can specify the level of detail you want, such as divisions or groups.
+The [PCOICOP](https://psa.gov.ph/classification/pcoicop) classifies household expenditures. Two editions are available: `"2020"` (default, 3,472 items) and `"2009"` (1,722 items).
 
-```{r pcoicop-example}
-# Retrieve PCOICOP data
-pcoicop_data <- get_pcoicop()
-pcoicop_data |>
-  head(10) |> 
-  gt::gt() |> 
+```{r pcoicop-default}
+get_pcoicop() |>
+  head(10) |>
+  gt::gt() |>
   gt::tab_options(table.align = "left")
+```
 
+```{r pcoicop-divisions}
+get_pcoicop(level = "divisions") |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+Switch to the 2009 edition with `version = "2009"`:
+
+```{r pcoicop-2009}
+get_pcoicop(version = "2009", level = "divisions") |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+## Philippine Central Product Classification (PCPC)
+
+The [PCPC](https://psa.gov.ph/classification/pcpc) classifies goods and services. The default returns all 8,734 items across six levels.
+
+```{r pcpc-default}
+get_pcpc() |>
+  head(10) |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+```{r pcpc-sections}
+get_pcpc(level = "sections") |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+## Philippine Standard Commodity Classification System (PSCCS)
+
+The [PSCCS](https://psa.gov.ph/classification/psccs) classifies commodities into sections, divisions, groups, classes, and sub-classes. The default returns all 1,870 items.
+
+```{r psccs-default}
+get_psccs() |>
+  head(10) |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+```{r psccs-section}
+get_psccs(level = "section") |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
 ```
 
 

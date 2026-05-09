@@ -4,49 +4,31 @@
 \alias{get_pcpc}
 \title{Philippine Central Product Classification (PCPC)}
 \usage{
-get_pcpc(
-  ...,
-  token = NULL,
-  version = NULL,
-  level = NULL,
-  harmonize = TRUE,
-  minimal = TRUE,
-  cols = NULL
-)
+get_pcpc(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 }
 \arguments{
-\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+\item{version}{Character. Version of the PCPC dataset. Default is the
+latest available (\code{"2002"}).}
 
-\item{token}{Character. API access token.}
+\item{level}{Character. Classification level: \code{"all"},
+\code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"},
+\code{"sub-classes"}, or \code{"item"} (default).}
 
-\item{version}{Character. Version of the PCPC to retrieve. Default is \code{NULL}. If \code{NULL}, the latest version is used.}
+\item{minimal}{Logical. If \code{TRUE} (default), returns only \code{value}
+and \code{label} columns.}
 
-\item{level}{Character. Level of detail to retrieve. Options are \code{"all"}, \code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"}, \code{"sub-classes"}, and \code{"item"}.}
-
-\item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
-
-\item{minimal}{Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.}
-
-\item{cols}{Optional. Character vector of additional columns to include when \code{minimal = FALSE}.}
+\item{cols}{Optional character vector of additional columns to include
+(\code{"description"} is the only extra column available).}
 }
 \value{
-A tibble containing the requested PCPC data.
+A data frame of PCPC classifications.
 }
 \description{
 Philippine Central Product Classification (PCPC)
 }
 \examples{
-\dontrun{
-get_pcpc(token = "your_api_token")
-}
-
-# If token is not provided, the function will fetch from local cache or
-# download the latest version from remote repo
 pcpc <- get_pcpc()
-
-# Get specific level
-pcpc_filtered <- get_pcpc(level = "sections")
-pcpc_filtered
+pcpc_sections <- get_pcpc(level = "sections")
 }
 \references{
 \url{https://psa.gov.ph/classification/pcpc}

@@ -5,49 +5,37 @@
 \title{Philippine Standard Geographic Code (PSGC)}
 \usage{
 get_psgc(
-  ...,
-  token = NULL,
-  version = NULL,
-  level = NULL,
-  harmonize = TRUE,
-  minimal = TRUE,
-  cols = NULL
+  release = latest_release(),
+  geographic_level = NULL,
+  include_population_data = FALSE
 )
 }
 \arguments{
-\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+\item{release}{A release name from [list_releases()]. Defaults to
+[latest_release()].}
 
-\item{token}{Character. API access token. If \code{NULL}, retrieves data from the local cache.}
+\item{geographic_level}{A character vector of geographic levels to filter by.
+Accepts canonical codes (`"Reg"`, `"Prov"`, `"City"`, `"Mun"`,
+`"SubMun"`, `"Bgy"`) as well as common aliases such as `"Region"`,
+`"Province"`, `"Municipality"`, `"Barangay"`, `"Sub-Municipality"`, etc.
+Use `"city_mun"` (or aliases like `"City-Municipality"`) to include both
+cities and municipalities. `NULL` (default) returns all levels.}
 
-\item{version}{Character. PSGC version such as: \code{"Q3_2025"}, \code{"July_2025"}, \code{"Q2_2025"}, \code{"Q1_2025"}, \code{"April_2024"}, \code{"Q4_2024"}, \code{"Q3_2024"}, \code{"Q2_2024"}, and \code{"Q4_2023"}, \code{"Q2_2021"}. If \code{NULL}, retrieves the latest version available in the local cache.}
-
-\item{level}{Character. Level of geographic data to retrieve. Available options are: \code{"all"}, \code{"regions"}, \code{"provinces"}, \code{"hucs"} \code{"municipalities"}, \code{"sub_municipalities"} \code{"barangays"}, \code{"income_classification"}, \code{"urban_rural"}, and \code{"city_class"}.}
-
-\item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
-
-\item{minimal}{Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.}
-
-\item{cols}{Optional. Character vector of additional columns to include when \code{minimal = FALSE}.}
+\item{include_population_data}{Logical. If `TRUE`, census population figures
+are joined onto the result, adding `population` (integer) and `year`
+columns. Each geographic unit produces one row per available census year.
+Defaults to `FALSE`.}
 }
 \value{
 A data frame of PSGC geographic data.
 }
 \description{
-Philippine Standard Geographic Code (PSGC)
+Re-exported from the \code{psgc} package. See
+  \code{\link[psgc]{get_psgc}} for full documentation.
 }
 \examples{
-\dontrun{
-get_psgc(token = "your_api_token")
-}
-
-# If token is not provided, the function will fetch from local cache or
-# download the latest version from remote repo
 psgc <- get_psgc()
-
-# Get specific level
-psgc_regions <- get_psgc(level = "regions")
-psgc_regions
-
+psgc_regions <- get_psgc(geographic_level = "region")
 }
 \references{
 \url{https://psa.gov.ph/classification/psgc}

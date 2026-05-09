@@ -8,3 +8,7 @@
 playground
 inst/doc
 docs
+*.json
+/doc/
+/Meta/
+.positai
