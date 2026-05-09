@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">phscs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,10 +34,44 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="phscs-010">phscs 0.1.0<a class="anchor" aria-label="anchor" href="#phscs-010"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.0" id="phscs-020">phscs 0.2.0<a class="anchor" aria-label="anchor" href="#phscs-020"></a></h2>
+<div class="section level3">
+<h3 id="breaking-changes-0-2-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-2-0"></a></h3>
+<ul><li>
+<p><strong><code><a href="../reference/get_psgc.html">get_psgc()</a></code> has a completely new interface.</strong> It is now re-exported directly from the <a href="https://cran.r-project.org/package=psgc" class="external-link"><code>psgc</code></a> package. The old parameters (<code>token</code>, <code>version</code>, <code>level</code>, <code>harmonize</code>, <code>minimal</code>, <code>cols</code>) are gone. Use the new <code>psgc</code> parameters instead:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Before</span></span>
+<span><span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"regions"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^10"</span>, <span class="va">area_code</span><span class="op">)</span><span class="op">)</span>   <span class="co"># dplyr filter</span></span>
+<span></span>
+<span><span class="co"># After</span></span>
+<span><span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span>geographic_level <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span>
+<span><span class="va">psgc_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">psgc_all</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^10"</span>, <span class="va">psgc_all</span><span class="op">$</span><span class="va">psgc_code</span><span class="op">)</span>, <span class="op">]</span>   <span class="co"># base R subsetting</span></span></code></pre></div>
+<p>See <code><a href="https://yng-me.github.io/psgc/articles/psgc.html" class="external-link">vignette("psgc", package = "psgc")</a></code> for full documentation.</p>
+</li>
+<li><p><strong><code>...</code> (dplyr filter) removed from all classification functions.</strong> <code><a href="../reference/get_psic.html">get_psic()</a></code>, <code><a href="../reference/get_psoc.html">get_psoc()</a></code>, <code><a href="../reference/get_pcpc.html">get_pcpc()</a></code>, <code><a href="../reference/get_psced.html">get_psced()</a></code>, and <code><a href="../reference/get_pcoicop.html">get_pcoicop()</a></code> no longer accept unquoted filter expressions. Filter rows with standard R subsetting after the call.</p></li>
+<li><p><strong><code>token</code> and <code>harmonize</code> parameters removed</strong> from all classification functions. Data is now always sourced from the bundled local dataset — no API access or internet connection is needed.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-0-2-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h3>
+<ul><li><p>Added <code><a href="../reference/get_psccs.html">get_psccs()</a></code> for the Philippine Standard Commodity Classification System (PSCCS 2018).</p></li>
+<li><p>All classification functions gain a <code>cols = "description"</code> option to include the full text description alongside <code>value</code> and <code>label</code>.</p></li>
+<li><p>PCOICOP now ships both the 2020 (default) and 2009 editions. Switch with <code>get_pcoicop(version = "2009")</code>.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-improvements-0-2-0">Other improvements<a class="anchor" aria-label="anchor" href="#other-improvements-0-2-0"></a></h3>
+<ul><li><p>Removed runtime dependencies on <code>dplyr</code>, <code>tidyr</code>, <code>purrr</code>, <code>stringr</code>, and <code>jsonlite</code>. The only Imports are now <code>cli</code> and <code>psgc</code>.</p></li>
+<li><p>Minimum R version lowered from 4.1.0 to 3.5.</p></li>
+<li><p>Data is pre-parsed at build time into a compressed <code>sysdata.rda</code>, making all functions substantially faster.</p></li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.0" id="phscs-010">phscs 0.1.0<a class="anchor" aria-label="anchor" href="#phscs-010"></a></h2><p class="text-muted">CRAN release: 2025-11-09</p>
 <ul><li>Initial CRAN submission.</li>
 </ul></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
@@ -45,7 +79,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

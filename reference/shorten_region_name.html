@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">phscs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,65 +52,102 @@
 
 
 <dt id="arg-which">which<a class="anchor" aria-label="anchor" href="#arg-which"></a></dt>
-<dd><p>Character. Specifies whether to shorten the region name by label or number. Options are <code>"label"</code> or <code>"number"</code>.</p></dd>
+<dd><p>Character. Specifies whether to shorten the region name by
+label or number. Options are <code>"label"</code> or <code>"number"</code>.</p></dd>
 
 
 <dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
-<dd><p>Character. The name of the column containing the area names. Default is <code>"area_name"</code>.</p></dd>
+<dd><p>Character. The name of the column containing the area names.
+Default is <code>"area_name"</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame with the region names shortened based on the specified <code>which</code> argument.</p>
+    <p>A data frame with the region names shortened based on the specified
+  <code>which</code> argument.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_psgc.html">get_psgc</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"regions"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_psgc.html">get_psgc</a></span><span class="op">(</span>geographic_level <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">shorten_region_name</span><span class="op">(</span><span class="va">regions</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    area_code  area_code_old area_name          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 0100000000 010000000     Ilocos Region      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 0200000000 020000000     Cagayan Valley     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 0300000000 030000000     Central Luzon      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 0400000000 040000000     CALABARZON         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 0500000000 050000000     Bicol Region       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 0600000000 060000000     Western Visayas    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 0700000000 070000000     Central Visayas    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 0800000000 080000000     Eastern Visayas    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 0900000000 090000000     Zamboanga Peninsula</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1000000000 100000000     Northern Mindanao  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 1100000000 110000000     Davao Region       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 1200000000 120000000     SOCCSKSARGEN       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 1300000000 130000000     NCR                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 1400000000 140000000     CAR                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 1600000000 160000000     Caraga             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 1700000000 170000000     MIMAROPA Region    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 1800000000 <span style="color: #BB0000;">NA</span>            NIR                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 1900000000 150000000     BARMM              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        psgc_code           area_name correspondence_code geographic_level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0100000000       Ilocos Region           010000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3398  0200000000      Cagayan Valley           020000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5808  0300000000       Central Luzon           030000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9051  0400000000          CALABARZON           040000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13191 0500000000        Bicol Region           050000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16783 0600000000     Western Visayas           060000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20279 0700000000     Central Visayas           070000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22695 0800000000     Eastern Visayas           080000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27210 0900000000 Zamboanga Peninsula           090000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29621 1000000000   Northern Mindanao           100000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31742 1100000000        Davao Region           110000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32959 1200000000        SOCCSKSARGEN           120000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34110 1300000000                 NCR           130000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35857 1400000000                 CAR           140000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37119 1600000000              Caraga           160000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38510 1700000000     MIMAROPA Region           170000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40049 1800000000                 NIR                &lt;NA&gt;              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41469 1900000000               BARMM           150000000              Reg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       old_name city_class income_classification urban_rural island_region</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3398      &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5808      &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9051      &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13191     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16783     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             V</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20279     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             V</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22695     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             V</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27210     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29621     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31742     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32959     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34110     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35857     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37119     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38510     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40049     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             V</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41469     &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
 <span class="r-in"><span><span class="fu">shorten_region_name</span><span class="op">(</span><span class="va">regions</span>, which <span class="op">=</span> <span class="st">"number"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    area_code  area_code_old area_name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 0100000000 010000000     I        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 0200000000 020000000     II       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 0300000000 030000000     III      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 0400000000 040000000     IV-A     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 0500000000 050000000     V        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 0600000000 060000000     VI       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 0700000000 070000000     VII      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 0800000000 080000000     VIII     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 0900000000 090000000     IX       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1000000000 100000000     X        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 1100000000 110000000     XI       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 1200000000 120000000     XII      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 1300000000 130000000     NCR      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 1400000000 140000000     CAR      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 1600000000 160000000     XIII     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 1700000000 170000000     MIMAROPA </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 1800000000 <span style="color: #BB0000;">NA</span>            NIR      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 1900000000 150000000     BARMM    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        psgc_code area_name correspondence_code geographic_level old_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     0100000000         I           010000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3398  0200000000        II           020000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5808  0300000000       III           030000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9051  0400000000      IV-A           040000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13191 0500000000         V           050000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16783 0600000000        VI           060000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20279 0700000000       VII           070000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22695 0800000000      VIII           080000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27210 0900000000        IX           090000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29621 1000000000         X           100000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31742 1100000000        XI           110000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32959 1200000000       XII           120000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34110 1300000000       NCR           130000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35857 1400000000       CAR           140000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37119 1600000000      XIII           160000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38510 1700000000  MIMAROPA           170000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40049 1800000000       NIR                &lt;NA&gt;              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41469 1900000000     BARMM           150000000              Reg     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       city_class income_classification urban_rural island_region</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3398        &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5808        &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9051        &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13191       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16783       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             V</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20279       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             V</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22695       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             V</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27210       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29621       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31742       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32959       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34110       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35857       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37119       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38510       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             L</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40049       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             V</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41469       &lt;NA&gt;                  &lt;NA&gt;        &lt;NA&gt;             M</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -122,7 +159,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Using the phscs Package • phscs</title>
+<title>Getting Started with phscs • phscs</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using the phscs Package">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with phscs">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">phscs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Using the phscs Package</h1>
+      <h1>Getting Started with phscs</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/yng-me/phscs/blob/main/vignettes/phscs.Rmd" class="external-link"><code>vignettes/phscs.Rmd</code></a></small>
@@ -62,40 +62,119 @@
 
     
     
+<p>The <code>phscs</code> package provides a single, consistent
+interface to seven Philippine Statistical Authority (PSA) classification
+systems. All data is <strong>bundled with the package</strong> — no
+internet connection or API token is required.</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Function</th>
+<th>Classification</th>
+<th>Source</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="../reference/get_psgc.html">get_psgc()</a></code></td>
+<td>Philippine Standard Geographic Code</td>
+<td>PSA via <code>psgc</code>
+</td>
+</tr>
+<tr class="even">
+<td><code><a href="../reference/get_psic.html">get_psic()</a></code></td>
+<td>Philippine Standard Industrial Classification</td>
+<td>PSA</td>
+</tr>
+<tr class="odd">
+<td><code><a href="../reference/get_psoc.html">get_psoc()</a></code></td>
+<td>Philippine Standard Occupational Classification</td>
+<td>PSA</td>
+</tr>
+<tr class="even">
+<td><code><a href="../reference/get_psced.html">get_psced()</a></code></td>
+<td>Philippine Standard Classification of Education</td>
+<td>PSA</td>
+</tr>
+<tr class="odd">
+<td><code><a href="../reference/get_pcoicop.html">get_pcoicop()</a></code></td>
+<td>Phil. Classification of Individual Consumption According to
+Purpose</td>
+<td>PSA</td>
+</tr>
+<tr class="even">
+<td><code><a href="../reference/get_pcpc.html">get_pcpc()</a></code></td>
+<td>Philippine Central Product Classification</td>
+<td>PSA</td>
+</tr>
+<tr class="odd">
+<td><code><a href="../reference/get_psccs.html">get_psccs()</a></code></td>
+<td>Philippine Standard Commodity Classification System</td>
+<td>PSA</td>
+</tr>
+</tbody>
+</table>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of <code>phscs</code> from
-GitHub using the <code>pak</code> package:</p>
+<p>Install from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"phscs"</span><span class="op">)</span></span></code></pre></div>
+<p>Or install the development version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"yng-me/phscs"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="philippine-standard-geographic-code-psgc">Philippine Standard Geographic Code (PSGC)<a class="anchor" aria-label="anchor" href="#philippine-standard-geographic-code-psgc"></a>
+<h2 id="common-interface">Common interface<a class="anchor" aria-label="anchor" href="#common-interface"></a>
 </h2>
-<p>One of the main functions in the <code>phscs</code> package is
-<code><a href="../reference/get_psgc.html">get_psgc()</a></code>, which retrieves the <a href="https://psa.gov.ph/classification/psgc" class="external-link">Philippine Standard
-Geographic Code</a> (PSGC) data. This function allows you to specify
-various parameters such as the version, level of geographic data, and
-whether to harmonize or minimize the dataset.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve PSGC data</span></span>
-<span><span class="va">psgc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">psgc_data</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
-<p>You can also retrieve data for specific levels, such as regions,
-provinces, municipalities, and barangays.</p>
+<p>All classification functions share the same parameters:</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>version</code></td>
+<td>latest</td>
+<td>Which edition of the standard to use (e.g. <code>"2019"</code>,
+<code>"2009"</code>)</td>
+</tr>
+<tr class="even">
+<td><code>level</code></td>
+<td>most detailed</td>
+<td>Which level of the hierarchy to return</td>
+</tr>
+<tr class="odd">
+<td><code>minimal</code></td>
+<td><code>TRUE</code></td>
+<td>Return only <code>value</code> and <code>label</code>; set
+<code>FALSE</code> for all columns</td>
+</tr>
+<tr class="even">
+<td><code>cols</code></td>
+<td><code>NULL</code></td>
+<td>Extra columns to include alongside <code>value</code> and
+<code>label</code> (e.g. <code>"description"</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Every classification has a <code>description</code> column available
+via <code>cols = "description"</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">psgc_provinces</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"provinces"</span><span class="op">)</span></span>
-<span><span class="va">psgc_regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"regions"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">psgc_regions</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psic.html">get_psic</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"sections"</span>, cols <span class="op">=</span> <span class="st">"description"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#mwlefoodfi table {
@@ -548,73 +627,52 @@ provinces, municipalities, and barangays.</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="area_code">area_code</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="area_code_old">area_code_old</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="area_name">area_name</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="description">description</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="area_code" class="gt_row gt_right">0100000000</td>
-<td headers="area_code_old" class="gt_row gt_right">010000000</td>
-<td headers="area_name" class="gt_row gt_left">Region I (Ilocos Region)</td>
+<td headers="value" class="gt_row gt_left">A</td>
+<td headers="label" class="gt_row gt_left">Agriculture, forestry and fishing</td>
+<td headers="description" class="gt_row gt_left">NA</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">0200000000</td>
-<td headers="area_code_old" class="gt_row gt_right">020000000</td>
-<td headers="area_name" class="gt_row gt_left">Region II (Cagayan Valley)</td>
+<td headers="value" class="gt_row gt_left">B</td>
+<td headers="label" class="gt_row gt_left">Mining and quarrying</td>
+<td headers="description" class="gt_row gt_left">NA</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">0300000000</td>
-<td headers="area_code_old" class="gt_row gt_right">030000000</td>
-<td headers="area_name" class="gt_row gt_left">Region III (Central Luzon)</td>
+<td headers="value" class="gt_row gt_left">C</td>
+<td headers="label" class="gt_row gt_left">Manufacturing</td>
+<td headers="description" class="gt_row gt_left">NA</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">0400000000</td>
-<td headers="area_code_old" class="gt_row gt_right">040000000</td>
-<td headers="area_name" class="gt_row gt_left">Region IV-A (CALABARZON)</td>
+<td headers="value" class="gt_row gt_left">D</td>
+<td headers="label" class="gt_row gt_left">Electricity, gas, steam and air conditioning supply</td>
+<td headers="description" class="gt_row gt_left">NA</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">0500000000</td>
-<td headers="area_code_old" class="gt_row gt_right">050000000</td>
-<td headers="area_name" class="gt_row gt_left">Region V (Bicol Region)</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0600000000</td>
-<td headers="area_code_old" class="gt_row gt_right">060000000</td>
-<td headers="area_name" class="gt_row gt_left">Region VI (Western Visayas)</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0700000000</td>
-<td headers="area_code_old" class="gt_row gt_right">070000000</td>
-<td headers="area_name" class="gt_row gt_left">Region VII (Central Visayas)</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0800000000</td>
-<td headers="area_code_old" class="gt_row gt_right">080000000</td>
-<td headers="area_name" class="gt_row gt_left">Region VIII (Eastern Visayas)</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0900000000</td>
-<td headers="area_code_old" class="gt_row gt_right">090000000</td>
-<td headers="area_name" class="gt_row gt_left">Region IX (Zamboanga Peninsula)</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">1000000000</td>
-<td headers="area_code_old" class="gt_row gt_right">100000000</td>
-<td headers="area_name" class="gt_row gt_left">Region X (Northern Mindanao)</td>
+<td headers="value" class="gt_row gt_left">E</td>
+<td headers="label" class="gt_row gt_left">Water supply; sewerage, waste management</td>
+<td headers="description" class="gt_row gt_left">NA</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>You can also filter the data using <code>dplyr</code> syntax. For
-example, to get all areas in the region with code “10”:</p>
+</div>
+<div class="section level2">
+<h2 id="philippine-standard-geographic-code-psgc">Philippine Standard Geographic Code (PSGC)<a class="anchor" aria-label="anchor" href="#philippine-standard-geographic-code-psgc"></a>
+</h2>
+<p><code><a href="../reference/get_psgc.html">get_psgc()</a></code> is re-exported from the <a href="https://cran.r-project.org/package=psgc" class="external-link"><code>psgc</code></a>
+package. For a full walkthrough — releases, crosswalks, population data
+— see <code><a href="https://yng-me.github.io/psgc/articles/psgc.html" class="external-link">vignette("psgc", package = "psgc")</a></code>.</p>
+<p>Use <code>geographic_level</code> to filter to a specific tier:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve PSGC data for areas in region 10</span></span>
-<span><span class="va">psgc_region_10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^10"</span>, <span class="va">area_code</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">psgc_regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span>geographic_level <span class="op">=</span> <span class="st">"region"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">psgc_region_10</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span><span class="va">psgc_regions</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#eexombwkke table {
@@ -1067,84 +1125,225 @@ example, to get all areas in the region with code “10”:</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="area_code">area_code</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="area_code_old">area_code_old</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="psgc_code">psgc_code</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="area_name">area_name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="correspondence_code">correspondence_code</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="geographic_level">geographic_level</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="old_name">old_name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="city_class">city_class</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="income_classification">income_classification</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="urban_rural">urban_rural</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="island_region">island_region</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="area_code" class="gt_row gt_right">1000000000</td>
-<td headers="area_code_old" class="gt_row gt_right">100000000</td>
+<td headers="psgc_code" class="gt_row gt_right">0100000000</td>
+<td headers="area_name" class="gt_row gt_left">Region I (Ilocos Region)</td>
+<td headers="correspondence_code" class="gt_row gt_right">010000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">0200000000</td>
+<td headers="area_name" class="gt_row gt_left">Region II (Cagayan Valley)</td>
+<td headers="correspondence_code" class="gt_row gt_right">020000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">0300000000</td>
+<td headers="area_name" class="gt_row gt_left">Region III (Central Luzon)</td>
+<td headers="correspondence_code" class="gt_row gt_right">030000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">0400000000</td>
+<td headers="area_name" class="gt_row gt_left">Region IV-A (CALABARZON)</td>
+<td headers="correspondence_code" class="gt_row gt_right">040000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">0500000000</td>
+<td headers="area_name" class="gt_row gt_left">Region V (Bicol Region)</td>
+<td headers="correspondence_code" class="gt_row gt_right">050000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">0600000000</td>
+<td headers="area_name" class="gt_row gt_left">Region VI (Western Visayas)</td>
+<td headers="correspondence_code" class="gt_row gt_right">060000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">V</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">0700000000</td>
+<td headers="area_name" class="gt_row gt_left">Region VII (Central Visayas)</td>
+<td headers="correspondence_code" class="gt_row gt_right">070000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">V</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">0800000000</td>
+<td headers="area_name" class="gt_row gt_left">Region VIII (Eastern Visayas)</td>
+<td headers="correspondence_code" class="gt_row gt_right">080000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">V</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">0900000000</td>
+<td headers="area_name" class="gt_row gt_left">Region IX (Zamboanga Peninsula)</td>
+<td headers="correspondence_code" class="gt_row gt_right">090000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">M</td>
+</tr>
+<tr>
+<td headers="psgc_code" class="gt_row gt_right">1000000000</td>
 <td headers="area_name" class="gt_row gt_left">Region X (Northern Mindanao)</td>
+<td headers="correspondence_code" class="gt_row gt_right">100000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">M</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">1001300000</td>
-<td headers="area_code_old" class="gt_row gt_right">101300000</td>
-<td headers="area_name" class="gt_row gt_left">Bukidnon</td>
+<td headers="psgc_code" class="gt_row gt_right">1100000000</td>
+<td headers="area_name" class="gt_row gt_left">Region XI (Davao Region)</td>
+<td headers="correspondence_code" class="gt_row gt_right">110000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">M</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">1001301000</td>
-<td headers="area_code_old" class="gt_row gt_right">101301000</td>
-<td headers="area_name" class="gt_row gt_left">Baungon</td>
+<td headers="psgc_code" class="gt_row gt_right">1200000000</td>
+<td headers="area_name" class="gt_row gt_left">Region XII (SOCCSKSARGEN)</td>
+<td headers="correspondence_code" class="gt_row gt_right">120000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">M</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">1001301001</td>
-<td headers="area_code_old" class="gt_row gt_right">101301001</td>
-<td headers="area_name" class="gt_row gt_left">Balintad</td>
+<td headers="psgc_code" class="gt_row gt_right">1300000000</td>
+<td headers="area_name" class="gt_row gt_left">National Capital Region (NCR)</td>
+<td headers="correspondence_code" class="gt_row gt_right">130000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">1001301002</td>
-<td headers="area_code_old" class="gt_row gt_right">101301002</td>
-<td headers="area_name" class="gt_row gt_left">Buenavista</td>
+<td headers="psgc_code" class="gt_row gt_right">1400000000</td>
+<td headers="area_name" class="gt_row gt_left">Cordillera Administrative Region (CAR)</td>
+<td headers="correspondence_code" class="gt_row gt_right">140000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">1001301003</td>
-<td headers="area_code_old" class="gt_row gt_right">101301003</td>
-<td headers="area_name" class="gt_row gt_left">Danatag</td>
+<td headers="psgc_code" class="gt_row gt_right">1600000000</td>
+<td headers="area_name" class="gt_row gt_left">Region XIII (Caraga)</td>
+<td headers="correspondence_code" class="gt_row gt_right">160000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">M</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">1001301004</td>
-<td headers="area_code_old" class="gt_row gt_right">101301004</td>
-<td headers="area_name" class="gt_row gt_left">Kalilangan</td>
+<td headers="psgc_code" class="gt_row gt_right">1700000000</td>
+<td headers="area_name" class="gt_row gt_left">MIMAROPA Region</td>
+<td headers="correspondence_code" class="gt_row gt_right">170000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">1001301005</td>
-<td headers="area_code_old" class="gt_row gt_right">101301005</td>
-<td headers="area_name" class="gt_row gt_left">Lacolac</td>
+<td headers="psgc_code" class="gt_row gt_right">1800000000</td>
+<td headers="area_name" class="gt_row gt_left">Negros Island Region (NIR)</td>
+<td headers="correspondence_code" class="gt_row gt_right">NA</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">V</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">1001301006</td>
-<td headers="area_code_old" class="gt_row gt_right">101301006</td>
-<td headers="area_name" class="gt_row gt_left">Langaon</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">1001301007</td>
-<td headers="area_code_old" class="gt_row gt_right">101301007</td>
-<td headers="area_name" class="gt_row gt_left">Liboran</td>
+<td headers="psgc_code" class="gt_row gt_right">1900000000</td>
+<td headers="area_name" class="gt_row gt_left">Bangsamoro Autonomous Region In Muslim Mindanao (BARMM)</td>
+<td headers="correspondence_code" class="gt_row gt_right">150000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">M</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>You can also retrieve the full PSGC dataset with all available
-columns by setting <code>minimal = FALSE</code> or by specifying
-additional columns to include:</p>
+<p>Use <code><a href="../reference/shorten_region_name.html">shorten_region_name()</a></code> to compact long region labels
+for plots or tables:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve full PSGC data</span></span>
-<span><span class="va">psgc_full_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span>minimal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Retrieve PSGC data with additional columns</span></span>
-<span><span class="va">psgc_data_with_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span></span>
-<span>  cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">"area_code"</span>, </span>
-<span>    <span class="st">"area_name"</span>, </span>
-<span>    <span class="st">"region_code"</span>, </span>
-<span>    <span class="st">"province_code"</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">psgc_data_with_cols</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<code class="sourceCode R"><span><span class="va">psgc_regions</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/shorten_region_name.html">shorten_region_name</a></span><span class="op">(</span>which <span class="op">=</span> <span class="st">"label"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
@@ -1597,103 +1796,91 @@ additional columns to include:</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="area_code">area_code</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="area_code_old">area_code_old</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="psgc_code">psgc_code</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="area_name">area_name</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="region_code">region_code</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="province_code">province_code</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="correspondence_code">correspondence_code</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="geographic_level">geographic_level</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="old_name">old_name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="city_class">city_class</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="income_classification">income_classification</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="urban_rural">urban_rural</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="island_region">island_region</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="area_code" class="gt_row gt_right">0100000000</td>
-<td headers="area_code_old" class="gt_row gt_right">010000000</td>
-<td headers="area_name" class="gt_row gt_left">Region I (Ilocos Region)</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">000</td>
+<td headers="psgc_code" class="gt_row gt_right">0100000000</td>
+<td headers="area_name" class="gt_row gt_left">Ilocos Region</td>
+<td headers="correspondence_code" class="gt_row gt_right">010000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">0102800000</td>
-<td headers="area_code_old" class="gt_row gt_right">012800000</td>
-<td headers="area_name" class="gt_row gt_left">Ilocos Norte</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
+<td headers="psgc_code" class="gt_row gt_right">0200000000</td>
+<td headers="area_name" class="gt_row gt_left">Cagayan Valley</td>
+<td headers="correspondence_code" class="gt_row gt_right">020000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">0102801000</td>
-<td headers="area_code_old" class="gt_row gt_right">012801000</td>
-<td headers="area_name" class="gt_row gt_left">Adams</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
+<td headers="psgc_code" class="gt_row gt_right">0300000000</td>
+<td headers="area_name" class="gt_row gt_left">Central Luzon</td>
+<td headers="correspondence_code" class="gt_row gt_right">030000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">0102801001</td>
-<td headers="area_code_old" class="gt_row gt_right">012801001</td>
-<td headers="area_name" class="gt_row gt_left">Adams</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
+<td headers="psgc_code" class="gt_row gt_right">0400000000</td>
+<td headers="area_name" class="gt_row gt_left">CALABARZON</td>
+<td headers="correspondence_code" class="gt_row gt_right">040000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
 </tr>
 <tr>
-<td headers="area_code" class="gt_row gt_right">0102802000</td>
-<td headers="area_code_old" class="gt_row gt_right">012802000</td>
-<td headers="area_name" class="gt_row gt_left">Bacarra</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0102802001</td>
-<td headers="area_code_old" class="gt_row gt_right">012802001</td>
-<td headers="area_name" class="gt_row gt_left">Bani</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0102802002</td>
-<td headers="area_code_old" class="gt_row gt_right">012802002</td>
-<td headers="area_name" class="gt_row gt_left">Buyon</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0102802003</td>
-<td headers="area_code_old" class="gt_row gt_right">012802003</td>
-<td headers="area_name" class="gt_row gt_left">Cabaruan</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0102802004</td>
-<td headers="area_code_old" class="gt_row gt_right">012802004</td>
-<td headers="area_name" class="gt_row gt_left">Cabulalaan</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
-</tr>
-<tr>
-<td headers="area_code" class="gt_row gt_right">0102802005</td>
-<td headers="area_code_old" class="gt_row gt_right">012802005</td>
-<td headers="area_name" class="gt_row gt_left">Cabusligan</td>
-<td headers="region_code" class="gt_row gt_right">01</td>
-<td headers="province_code" class="gt_row gt_right">028</td>
+<td headers="psgc_code" class="gt_row gt_right">0500000000</td>
+<td headers="area_name" class="gt_row gt_left">Bicol Region</td>
+<td headers="correspondence_code" class="gt_row gt_right">050000000</td>
+<td headers="geographic_level" class="gt_row gt_left">Reg</td>
+<td headers="old_name" class="gt_row gt_left">NA</td>
+<td headers="city_class" class="gt_row gt_left">NA</td>
+<td headers="income_classification" class="gt_row gt_left">NA</td>
+<td headers="urban_rural" class="gt_row gt_left">NA</td>
+<td headers="island_region" class="gt_row gt_left">L</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p>To filter rows by code, use standard R subsetting after the call:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># All areas whose PSGC code starts with "10" (Region X)</span></span>
+<span><span class="va">psgc_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psgc.html">get_psgc</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">psgc_region_10</span> <span class="op">&lt;-</span> <span class="va">psgc_all</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^10"</span>, <span class="va">psgc_all</span><span class="op">$</span><span class="va">psgc_code</span><span class="op">)</span>, <span class="op">]</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="philippine-standard-industrial-classification-psic">Philippine Standard Industrial Classification (PSIC)<a class="anchor" aria-label="anchor" href="#philippine-standard-industrial-classification-psic"></a>
 </h2>
-<p>The <code><a href="../reference/get_psic.html">get_psic()</a></code> function retrieves the <a href="https://psa.gov.ph/classification/psic" class="external-link">Philippine Standard
-Industrial Classification</a> (PSIC) data. You can specify the level of
-detail you want, such as sections or divisions.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve PSIC data</span></span>
-<span><span class="va">psic_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psic.html">get_psic</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Retrieve PSIC data for specific levels</span></span>
-<span><span class="va">psic_sections</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psic.html">get_psic</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"sections"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">psic_sections</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<p>The <a href="https://psa.gov.ph/classification/psic" class="external-link">PSIC</a>
+organises economic activities into sections, divisions, groups, classes,
+and sub-classes. The default returns the most detailed level.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psic.html">get_psic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <div id="kgufivjubq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#kgufivjubq table {
@@ -2146,70 +2333,56 @@ detail you want, such as sections or divisions.</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="value">value</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="value" class="gt_row gt_left">A</td>
-<td headers="label" class="gt_row gt_left">Agriculture, forestry and fishing</td>
+<td headers="value" class="gt_row gt_right">01111</td>
+<td headers="label" class="gt_row gt_left">Growing of leguminous crops such as: mongo, string beans (sitao), pigeon peas, gisantes, garbanzos, bountiful beans (habichuelas), peas (sitsaro)</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">B</td>
-<td headers="label" class="gt_row gt_left">Mining and quarrying</td>
+<td headers="value" class="gt_row gt_right">01112</td>
+<td headers="label" class="gt_row gt_left">Growing of groundnuts</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">C</td>
-<td headers="label" class="gt_row gt_left">Manufacturing</td>
+<td headers="value" class="gt_row gt_right">01113</td>
+<td headers="label" class="gt_row gt_left">Growing of oil seeds (except groundnuts) such as soya beans, sunflower and growing of other oil seeds, n.e.c.</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">D</td>
-<td headers="label" class="gt_row gt_left">Electricity, gas, steam and air conditioning supply</td>
+<td headers="value" class="gt_row gt_right">01114</td>
+<td headers="label" class="gt_row gt_left">Growing of sorghum, wheat</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">E</td>
-<td headers="label" class="gt_row gt_left">Water supply; sewerage, waste management</td>
+<td headers="value" class="gt_row gt_right">01119</td>
+<td headers="label" class="gt_row gt_left">Growing of other cereals (except rice and corn), leguminous crops and oil seeds, n.e.c.</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">F</td>
-<td headers="label" class="gt_row gt_left">Construction</td>
+<td headers="value" class="gt_row gt_right">01121</td>
+<td headers="label" class="gt_row gt_left">Growing of paddy rice, lowland, irrigated</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">G</td>
-<td headers="label" class="gt_row gt_left">Wholesale and retail trade; repair of motor vehicles and motorcycles</td>
+<td headers="value" class="gt_row gt_right">01122</td>
+<td headers="label" class="gt_row gt_left">Growing of paddy rice, lowland, rainfed</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">H</td>
-<td headers="label" class="gt_row gt_left">Transportation and storage</td>
+<td headers="value" class="gt_row gt_right">01123</td>
+<td headers="label" class="gt_row gt_left">Growing of paddy rice, upland/kaingin</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">I</td>
-<td headers="label" class="gt_row gt_left">Accommodation and food service activities</td>
+<td headers="value" class="gt_row gt_right">01130</td>
+<td headers="label" class="gt_row gt_left">Growing of corn, except young corn (vegetable)</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_left">J</td>
-<td headers="label" class="gt_row gt_left">Information and communication</td>
+<td headers="value" class="gt_row gt_right">01140</td>
+<td headers="label" class="gt_row gt_left">Growing of sugarcane including muscovado sugar-making in the farm</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-<div class="section level2">
-<h2 id="philippine-standard-occupational-classification-psoc">Philippine Standard Occupational Classification (PSOC)<a class="anchor" aria-label="anchor" href="#philippine-standard-occupational-classification-psoc"></a>
-</h2>
-<p>The <code><a href="../reference/get_psoc.html">get_psoc()</a></code> function retrieves the <a href="https://psa.gov.ph/classification/psoc" class="external-link">Philippine Standard
-Occupational Classification</a> (PSOC) data. Similar to PSIC, you can
-specify the level of detail you want.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve PSOC data</span></span>
-<span><span class="va">psoc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psoc.html">get_psoc</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Retrieve PSOC data for specific levels</span></span>
-<span><span class="va">psoc_major</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psoc.html">get_psoc</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"major"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">psoc_major</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psic.html">get_psic</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"sections"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <div id="txvafbsnay" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#txvafbsnay table {
@@ -2662,66 +2835,108 @@ specify the level of detail you want.</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="value">value</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="value" class="gt_row gt_right">1</td>
-<td headers="label" class="gt_row gt_left">Managers</td>
+<td headers="value" class="gt_row gt_left">A</td>
+<td headers="label" class="gt_row gt_left">Agriculture, forestry and fishing</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">2</td>
-<td headers="label" class="gt_row gt_left">Professionals</td>
+<td headers="value" class="gt_row gt_left">B</td>
+<td headers="label" class="gt_row gt_left">Mining and quarrying</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">3</td>
-<td headers="label" class="gt_row gt_left">Technicians and associate professionals</td>
+<td headers="value" class="gt_row gt_left">C</td>
+<td headers="label" class="gt_row gt_left">Manufacturing</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">4</td>
-<td headers="label" class="gt_row gt_left">Clerical support workers</td>
+<td headers="value" class="gt_row gt_left">D</td>
+<td headers="label" class="gt_row gt_left">Electricity, gas, steam and air conditioning supply</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">5</td>
-<td headers="label" class="gt_row gt_left">Service and sales workers</td>
+<td headers="value" class="gt_row gt_left">E</td>
+<td headers="label" class="gt_row gt_left">Water supply; sewerage, waste management</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">6</td>
-<td headers="label" class="gt_row gt_left">Skilled agricultural, forestry and fishery workers</td>
+<td headers="value" class="gt_row gt_left">F</td>
+<td headers="label" class="gt_row gt_left">Construction</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">7</td>
-<td headers="label" class="gt_row gt_left">Craft and related trades workers</td>
+<td headers="value" class="gt_row gt_left">G</td>
+<td headers="label" class="gt_row gt_left">Wholesale and retail trade; repair of motor vehicles and motorcycles</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">8</td>
-<td headers="label" class="gt_row gt_left">Plant and machine operators, and assemblers</td>
+<td headers="value" class="gt_row gt_left">H</td>
+<td headers="label" class="gt_row gt_left">Transportation and storage</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">9</td>
-<td headers="label" class="gt_row gt_left">Elementary occupations</td>
+<td headers="value" class="gt_row gt_left">I</td>
+<td headers="label" class="gt_row gt_left">Accommodation and food service activities</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">0</td>
-<td headers="label" class="gt_row gt_left">Armed forces occupations</td>
+<td headers="value" class="gt_row gt_left">J</td>
+<td headers="label" class="gt_row gt_left">Information and communication</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">K</td>
+<td headers="label" class="gt_row gt_left">Financial and insurance activities</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">L</td>
+<td headers="label" class="gt_row gt_left">Real estate activities</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">M</td>
+<td headers="label" class="gt_row gt_left">Professional, scientific and technical activities</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">N</td>
+<td headers="label" class="gt_row gt_left">Administrative and support service activities</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">O</td>
+<td headers="label" class="gt_row gt_left">Public administration and defense; compulsory social security</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">P</td>
+<td headers="label" class="gt_row gt_left">Education</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">Q</td>
+<td headers="label" class="gt_row gt_left">Human health and social work activities</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">R</td>
+<td headers="label" class="gt_row gt_left">Arts, entertainment and recreation</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">S</td>
+<td headers="label" class="gt_row gt_left">Other service activities</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">T</td>
+<td headers="label" class="gt_row gt_left">Activities of households as employers; undifferentiated goods-and services-producing activities of households for own use</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_left">U</td>
+<td headers="label" class="gt_row gt_left">Activities of extra-territorial organizations and bodies</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="section level2">
-<h2 id="philippine-standard-classification-for-education-psced">Philippine Standard Classification for Education (PSCED)<a class="anchor" aria-label="anchor" href="#philippine-standard-classification-for-education-psced"></a>
+<h2 id="philippine-standard-occupational-classification-psoc">Philippine Standard Occupational Classification (PSOC)<a class="anchor" aria-label="anchor" href="#philippine-standard-occupational-classification-psoc"></a>
 </h2>
-<p>The <code><a href="../reference/get_psced.html">get_psced()</a></code> function retrieves the <a href="https://psa.gov.ph/classification/psced" class="external-link">Philippine Standard
-Classification for Education</a> (PSCED) data. You can specify the level
-of detail you want, such as broadfield or narrowfield.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve PSCED data</span></span>
-<span><span class="va">psced_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psced.html">get_psced</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">psced_data</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<p>The <a href="https://psa.gov.ph/classification/psoc" class="external-link">PSOC</a>
+classifies occupations into major, sub-major, minor, and unit groups.
+The default returns unit groups.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psoc.html">get_psoc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <div id="orehalspkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#orehalspkz table {
@@ -3179,57 +3394,51 @@ of detail you want, such as broadfield or narrowfield.</p>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="value" class="gt_row gt_right">01000</td>
-<td headers="label" class="gt_row gt_left">Early Childhood Educational Development Programs</td>
+<td headers="value" class="gt_row gt_right">1111</td>
+<td headers="label" class="gt_row gt_left">Legislators</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">02000</td>
-<td headers="label" class="gt_row gt_left">Pre-Primary Education Programs (Kindergarten)</td>
+<td headers="value" class="gt_row gt_right">1112</td>
+<td headers="label" class="gt_row gt_left">Senior government officials</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">10001</td>
-<td headers="label" class="gt_row gt_left">Primary Education Programs</td>
+<td headers="value" class="gt_row gt_right">1113</td>
+<td headers="label" class="gt_row gt_left">Traditional chiefs and heads of villages</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">10002</td>
-<td headers="label" class="gt_row gt_left">Inclusive and Special Needs Education Programs</td>
+<td headers="value" class="gt_row gt_right">1114</td>
+<td headers="label" class="gt_row gt_left">Senior officials of special-interest organizations</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">10003</td>
-<td headers="label" class="gt_row gt_left">Continuing / Second-Chance Education Programs</td>
+<td headers="value" class="gt_row gt_right">1120</td>
+<td headers="label" class="gt_row gt_left">Managing directors and chief executives</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">24001</td>
-<td headers="label" class="gt_row gt_left">Lower Secondary Education Programs</td>
+<td headers="value" class="gt_row gt_right">1211</td>
+<td headers="label" class="gt_row gt_left">Finance managers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">24002</td>
-<td headers="label" class="gt_row gt_left">Inclusive and Special Needs Education Programs</td>
+<td headers="value" class="gt_row gt_right">1212</td>
+<td headers="label" class="gt_row gt_left">Human resource managers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">24003</td>
-<td headers="label" class="gt_row gt_left">Continuing / Second-Chance Education Programs</td>
+<td headers="value" class="gt_row gt_right">1213</td>
+<td headers="label" class="gt_row gt_left">Policy and planning managers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">25000</td>
-<td headers="label" class="gt_row gt_left">Lower Secondary Technical-Vocational Livelihood Programs (Junior High School)</td>
+<td headers="value" class="gt_row gt_right">1219</td>
+<td headers="label" class="gt_row gt_left">Business services and administration managers not elsewhere classified</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">34001</td>
-<td headers="label" class="gt_row gt_left">Academic Track</td>
+<td headers="value" class="gt_row gt_right">1221</td>
+<td headers="label" class="gt_row gt_left">Sales and marketing managers</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>You can also retrieve data for specific levels, such as
-<code>broadfield</code> or <code>narrowfield</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve PSCED data for specific levels</span></span>
-<span><span class="va">psced_broadfield</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_psced.html">get_psced</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"broadfield"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">psced_broadfield</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psoc.html">get_psoc</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"major"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <div id="cbwjcfdjag" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#cbwjcfdjag table {
@@ -3687,63 +3896,59 @@ of detail you want, such as broadfield or narrowfield.</p>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="value" class="gt_row gt_right">01</td>
-<td headers="label" class="gt_row gt_left">Early Childhood Educational Development Programs</td>
+<td headers="value" class="gt_row gt_right">1</td>
+<td headers="label" class="gt_row gt_left">Managers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">02</td>
-<td headers="label" class="gt_row gt_left">Pre-Primary Education Programs (Kindergarten)</td>
+<td headers="value" class="gt_row gt_right">2</td>
+<td headers="label" class="gt_row gt_left">Professionals</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">10</td>
-<td headers="label" class="gt_row gt_left">Primary Education Programs (Elementary)</td>
+<td headers="value" class="gt_row gt_right">3</td>
+<td headers="label" class="gt_row gt_left">Technicians and associate professionals</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">24</td>
-<td headers="label" class="gt_row gt_left">Lower Secondary General Education Programs (Junior High School)</td>
+<td headers="value" class="gt_row gt_right">4</td>
+<td headers="label" class="gt_row gt_left">Clerical support workers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">25</td>
-<td headers="label" class="gt_row gt_left">Lower Secondary Technical-Vocational Livelihood Programs (Junior High School)</td>
+<td headers="value" class="gt_row gt_right">5</td>
+<td headers="label" class="gt_row gt_left">Service and sales workers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">34</td>
-<td headers="label" class="gt_row gt_left">Upper Secondary General Education Programs (Senior High School: Grade 11 And Grade 12)</td>
+<td headers="value" class="gt_row gt_right">6</td>
+<td headers="label" class="gt_row gt_left">Skilled agricultural, forestry and fishery workers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">35</td>
-<td headers="label" class="gt_row gt_left">Upper Secondary Vocational Education Programs (Senior High School: Grade 11 And Grade 12)</td>
+<td headers="value" class="gt_row gt_right">7</td>
+<td headers="label" class="gt_row gt_left">Craft and related trades workers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">40</td>
-<td headers="label" class="gt_row gt_left">Generic Programmes and Qualifications</td>
+<td headers="value" class="gt_row gt_right">8</td>
+<td headers="label" class="gt_row gt_left">Plant and machine operators, and assemblers</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">41</td>
-<td headers="label" class="gt_row gt_left">Services</td>
+<td headers="value" class="gt_row gt_right">9</td>
+<td headers="label" class="gt_row gt_left">Elementary occupations</td>
 </tr>
 <tr>
-<td headers="value" class="gt_row gt_right">49</td>
-<td headers="label" class="gt_row gt_left">Field Unknown</td>
+<td headers="value" class="gt_row gt_right">0</td>
+<td headers="label" class="gt_row gt_left">Armed forces occupations</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="section level2">
-<h2 id="philippine-classification-of-individual-consumption-according-to-purpose-pcoicop">Philippine Classification of Individual Consumption According to
-Purpose (PCOICOP)<a class="anchor" aria-label="anchor" href="#philippine-classification-of-individual-consumption-according-to-purpose-pcoicop"></a>
+<h2 id="philippine-standard-classification-of-education-psced">Philippine Standard Classification of Education (PSCED)<a class="anchor" aria-label="anchor" href="#philippine-standard-classification-of-education-psced"></a>
 </h2>
-<p>The <code><a href="../reference/get_pcoicop.html">get_pcoicop()</a></code> function retrieves the <a href="https://psa.gov.ph/classification/pcoicop" class="external-link">Philippine
-Classification of Individual Consumption According to Purpose</a>
-(PCOICOP) data. You can specify the level of detail you want, such as
-divisions or groups.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve PCOICOP data</span></span>
-<span><span class="va">pcoicop_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_pcoicop.html">get_pcoicop</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">pcoicop_data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<p>The <a href="https://psa.gov.ph/classification/psced" class="external-link">PSCED</a>
+classifies fields of study into education levels, broad fields, narrow
+fields, and detailed fields. The default returns detailed fields.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psced.html">get_psced</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
 <div id="fvsybhaagl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#fvsybhaagl table {
@@ -4201,6 +4406,1016 @@ divisions or groups.</p>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
+<td headers="value" class="gt_row gt_right">01000</td>
+<td headers="label" class="gt_row gt_left">Early Childhood Educational Development Programs</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">02000</td>
+<td headers="label" class="gt_row gt_left">Pre-Primary Education Programs (Kindergarten)</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">10001</td>
+<td headers="label" class="gt_row gt_left">Primary Education Programs</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">10002</td>
+<td headers="label" class="gt_row gt_left">Inclusive and Special Needs Education Programs</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">10003</td>
+<td headers="label" class="gt_row gt_left">Continuing / Second-Chance Education Programs</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">24001</td>
+<td headers="label" class="gt_row gt_left">Lower Secondary Education Programs</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">24002</td>
+<td headers="label" class="gt_row gt_left">Inclusive and Special Needs Education Programs</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">24003</td>
+<td headers="label" class="gt_row gt_left">Continuing / Second-Chance Education Programs</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">25000</td>
+<td headers="label" class="gt_row gt_left">Lower Secondary Technical-Vocational Livelihood Programs (Junior High School)</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">34001</td>
+<td headers="label" class="gt_row gt_left">Academic Track</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psced.html">get_psced</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"levels"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<div id="vijbfglzvn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vijbfglzvn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vijbfglzvn thead, #vijbfglzvn tbody, #vijbfglzvn tfoot, #vijbfglzvn tr, #vijbfglzvn td, #vijbfglzvn th {
+  border-style: none;
+}
+
+#vijbfglzvn p {
+  margin: 0;
+  padding: 0;
+}
+
+#vijbfglzvn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vijbfglzvn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vijbfglzvn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vijbfglzvn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vijbfglzvn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vijbfglzvn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vijbfglzvn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vijbfglzvn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vijbfglzvn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#vijbfglzvn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vijbfglzvn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vijbfglzvn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vijbfglzvn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vijbfglzvn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vijbfglzvn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vijbfglzvn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vijbfglzvn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#vijbfglzvn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vijbfglzvn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vijbfglzvn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vijbfglzvn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vijbfglzvn .gt_left {
+  text-align: left;
+}
+
+#vijbfglzvn .gt_center {
+  text-align: center;
+}
+
+#vijbfglzvn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vijbfglzvn .gt_font_normal {
+  font-weight: normal;
+}
+
+#vijbfglzvn .gt_font_bold {
+  font-weight: bold;
+}
+
+#vijbfglzvn .gt_font_italic {
+  font-style: italic;
+}
+
+#vijbfglzvn .gt_super {
+  font-size: 65%;
+}
+
+#vijbfglzvn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#vijbfglzvn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vijbfglzvn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vijbfglzvn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vijbfglzvn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vijbfglzvn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vijbfglzvn .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#vijbfglzvn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vijbfglzvn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="value" class="gt_row gt_right">0</td>
+<td headers="label" class="gt_row gt_left">Early Childhood Education</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">1</td>
+<td headers="label" class="gt_row gt_left">Primary Education</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">2</td>
+<td headers="label" class="gt_row gt_left">Lower Secondary Education</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">3</td>
+<td headers="label" class="gt_row gt_left">Upper Secondary Education</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">4</td>
+<td headers="label" class="gt_row gt_left">Post-secondary non-tertiary education</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">5</td>
+<td headers="label" class="gt_row gt_left">Short-cycle tertiary education</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">6</td>
+<td headers="label" class="gt_row gt_left">Bachelor level education or equivalent</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">7</td>
+<td headers="label" class="gt_row gt_left">Master level education or equivalent</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">8</td>
+<td headers="label" class="gt_row gt_left">Doctoral level education or equivalent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section level2">
+<h2 id="philippine-classification-of-individual-consumption-according-to-purpose-pcoicop">Philippine Classification of Individual Consumption According to
+Purpose (PCOICOP)<a class="anchor" aria-label="anchor" href="#philippine-classification-of-individual-consumption-according-to-purpose-pcoicop"></a>
+</h2>
+<p>The <a href="https://psa.gov.ph/classification/pcoicop" class="external-link">PCOICOP</a>
+classifies household expenditures. Two editions are available:
+<code>"2020"</code> (default, 3,472 items) and <code>"2009"</code>
+(1,722 items).</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_pcoicop.html">get_pcoicop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<div id="egslqeqmfa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#egslqeqmfa table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#egslqeqmfa thead, #egslqeqmfa tbody, #egslqeqmfa tfoot, #egslqeqmfa tr, #egslqeqmfa td, #egslqeqmfa th {
+  border-style: none;
+}
+
+#egslqeqmfa p {
+  margin: 0;
+  padding: 0;
+}
+
+#egslqeqmfa .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#egslqeqmfa .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#egslqeqmfa .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#egslqeqmfa .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#egslqeqmfa .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#egslqeqmfa .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#egslqeqmfa .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#egslqeqmfa .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#egslqeqmfa .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#egslqeqmfa .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#egslqeqmfa .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#egslqeqmfa .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#egslqeqmfa .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#egslqeqmfa .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#egslqeqmfa .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#egslqeqmfa .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#egslqeqmfa .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#egslqeqmfa .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#egslqeqmfa .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#egslqeqmfa .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#egslqeqmfa .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#egslqeqmfa .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#egslqeqmfa .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#egslqeqmfa .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#egslqeqmfa .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#egslqeqmfa .gt_left {
+  text-align: left;
+}
+
+#egslqeqmfa .gt_center {
+  text-align: center;
+}
+
+#egslqeqmfa .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#egslqeqmfa .gt_font_normal {
+  font-weight: normal;
+}
+
+#egslqeqmfa .gt_font_bold {
+  font-weight: bold;
+}
+
+#egslqeqmfa .gt_font_italic {
+  font-style: italic;
+}
+
+#egslqeqmfa .gt_super {
+  font-size: 65%;
+}
+
+#egslqeqmfa .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#egslqeqmfa .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#egslqeqmfa .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#egslqeqmfa .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#egslqeqmfa .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#egslqeqmfa .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#egslqeqmfa .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#egslqeqmfa .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#egslqeqmfa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
 <td headers="value" class="gt_row gt_right">01</td>
 <td headers="label" class="gt_row gt_left">Food and non-alcoholic beverages</td>
 </tr>
@@ -4243,6 +5458,3075 @@ divisions or groups.</p>
 </tbody>
 </table>
 </div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_pcoicop.html">get_pcoicop</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"divisions"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<div id="amrewkadgw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#amrewkadgw table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#amrewkadgw thead, #amrewkadgw tbody, #amrewkadgw tfoot, #amrewkadgw tr, #amrewkadgw td, #amrewkadgw th {
+  border-style: none;
+}
+
+#amrewkadgw p {
+  margin: 0;
+  padding: 0;
+}
+
+#amrewkadgw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#amrewkadgw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#amrewkadgw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#amrewkadgw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#amrewkadgw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#amrewkadgw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#amrewkadgw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#amrewkadgw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#amrewkadgw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#amrewkadgw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#amrewkadgw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#amrewkadgw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#amrewkadgw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#amrewkadgw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#amrewkadgw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#amrewkadgw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#amrewkadgw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#amrewkadgw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#amrewkadgw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#amrewkadgw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#amrewkadgw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#amrewkadgw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#amrewkadgw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#amrewkadgw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#amrewkadgw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#amrewkadgw .gt_left {
+  text-align: left;
+}
+
+#amrewkadgw .gt_center {
+  text-align: center;
+}
+
+#amrewkadgw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#amrewkadgw .gt_font_normal {
+  font-weight: normal;
+}
+
+#amrewkadgw .gt_font_bold {
+  font-weight: bold;
+}
+
+#amrewkadgw .gt_font_italic {
+  font-style: italic;
+}
+
+#amrewkadgw .gt_super {
+  font-size: 65%;
+}
+
+#amrewkadgw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#amrewkadgw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#amrewkadgw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#amrewkadgw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#amrewkadgw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#amrewkadgw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#amrewkadgw .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#amrewkadgw .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#amrewkadgw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="value" class="gt_row gt_right">01</td>
+<td headers="label" class="gt_row gt_left">Food and non-alcoholic beverages</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">02</td>
+<td headers="label" class="gt_row gt_left">Alcoholic beverages, tobacco and narcotics</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">03</td>
+<td headers="label" class="gt_row gt_left">Clothing and footwear</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">04</td>
+<td headers="label" class="gt_row gt_left">Housing, water, electricity, gas and other fuels</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">05</td>
+<td headers="label" class="gt_row gt_left">Furnishings, household equipment and routine household maintenance</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">06</td>
+<td headers="label" class="gt_row gt_left">Health</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">07</td>
+<td headers="label" class="gt_row gt_left">Transport</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">08</td>
+<td headers="label" class="gt_row gt_left">Information and communication</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">09</td>
+<td headers="label" class="gt_row gt_left">Recreation, sport and culture</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">10</td>
+<td headers="label" class="gt_row gt_left">Education services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">11</td>
+<td headers="label" class="gt_row gt_left">Restaurants and accommodation services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">12</td>
+<td headers="label" class="gt_row gt_left">Insurance and financial services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">13</td>
+<td headers="label" class="gt_row gt_left">Personal care, social protection and miscellaneous goods and services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">14</td>
+<td headers="label" class="gt_row gt_left">Individual consumption expenditure of non-profit institutions serving households</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">15</td>
+<td headers="label" class="gt_row gt_left">Individual consumption expenditure of general government</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Switch to the 2009 edition with <code>version = "2009"</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_pcoicop.html">get_pcoicop</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"2009"</span>, level <span class="op">=</span> <span class="st">"divisions"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<div id="xbhisifmmy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xbhisifmmy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xbhisifmmy thead, #xbhisifmmy tbody, #xbhisifmmy tfoot, #xbhisifmmy tr, #xbhisifmmy td, #xbhisifmmy th {
+  border-style: none;
+}
+
+#xbhisifmmy p {
+  margin: 0;
+  padding: 0;
+}
+
+#xbhisifmmy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xbhisifmmy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xbhisifmmy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xbhisifmmy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xbhisifmmy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xbhisifmmy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xbhisifmmy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xbhisifmmy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xbhisifmmy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xbhisifmmy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xbhisifmmy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xbhisifmmy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xbhisifmmy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xbhisifmmy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xbhisifmmy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbhisifmmy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xbhisifmmy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xbhisifmmy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xbhisifmmy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbhisifmmy .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xbhisifmmy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbhisifmmy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xbhisifmmy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbhisifmmy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xbhisifmmy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbhisifmmy .gt_left {
+  text-align: left;
+}
+
+#xbhisifmmy .gt_center {
+  text-align: center;
+}
+
+#xbhisifmmy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xbhisifmmy .gt_font_normal {
+  font-weight: normal;
+}
+
+#xbhisifmmy .gt_font_bold {
+  font-weight: bold;
+}
+
+#xbhisifmmy .gt_font_italic {
+  font-style: italic;
+}
+
+#xbhisifmmy .gt_super {
+  font-size: 65%;
+}
+
+#xbhisifmmy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xbhisifmmy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xbhisifmmy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xbhisifmmy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xbhisifmmy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xbhisifmmy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xbhisifmmy .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xbhisifmmy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xbhisifmmy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="value" class="gt_row gt_right">1</td>
+<td headers="label" class="gt_row gt_left">Food and non- alcoholic beverages</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">2</td>
+<td headers="label" class="gt_row gt_left">Alcoholic beverages, tobacco and narcotics</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">3</td>
+<td headers="label" class="gt_row gt_left">Clothing and footwear</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">4</td>
+<td headers="label" class="gt_row gt_left">Housing, water, electricity, gas and other fuels</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">5</td>
+<td headers="label" class="gt_row gt_left">Furnishings, household equipment and routine household maintenance</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">6</td>
+<td headers="label" class="gt_row gt_left">Health</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">7</td>
+<td headers="label" class="gt_row gt_left">Transport</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">8</td>
+<td headers="label" class="gt_row gt_left">Communication</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">9</td>
+<td headers="label" class="gt_row gt_left">Recreation and culture</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">10</td>
+<td headers="label" class="gt_row gt_left">Education</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">11</td>
+<td headers="label" class="gt_row gt_left">Restaurants and hotels</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">12</td>
+<td headers="label" class="gt_row gt_left">Miscellaneous goods and services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">13</td>
+<td headers="label" class="gt_row gt_left">Individual consumption expenditures of non-profit institutions serving households</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">14</td>
+<td headers="label" class="gt_row gt_left">Individual consumption expenditure of general government</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section level2">
+<h2 id="philippine-central-product-classification-pcpc">Philippine Central Product Classification (PCPC)<a class="anchor" aria-label="anchor" href="#philippine-central-product-classification-pcpc"></a>
+</h2>
+<p>The <a href="https://psa.gov.ph/classification/pcpc" class="external-link">PCPC</a>
+classifies goods and services. The default returns all 8,734 items
+across six levels.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_pcpc.html">get_pcpc</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<div id="ucmrwtkdbi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ucmrwtkdbi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ucmrwtkdbi thead, #ucmrwtkdbi tbody, #ucmrwtkdbi tfoot, #ucmrwtkdbi tr, #ucmrwtkdbi td, #ucmrwtkdbi th {
+  border-style: none;
+}
+
+#ucmrwtkdbi p {
+  margin: 0;
+  padding: 0;
+}
+
+#ucmrwtkdbi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ucmrwtkdbi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ucmrwtkdbi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ucmrwtkdbi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ucmrwtkdbi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ucmrwtkdbi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ucmrwtkdbi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ucmrwtkdbi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ucmrwtkdbi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ucmrwtkdbi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ucmrwtkdbi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ucmrwtkdbi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ucmrwtkdbi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ucmrwtkdbi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ucmrwtkdbi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ucmrwtkdbi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ucmrwtkdbi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ucmrwtkdbi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ucmrwtkdbi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ucmrwtkdbi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ucmrwtkdbi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ucmrwtkdbi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ucmrwtkdbi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ucmrwtkdbi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ucmrwtkdbi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ucmrwtkdbi .gt_left {
+  text-align: left;
+}
+
+#ucmrwtkdbi .gt_center {
+  text-align: center;
+}
+
+#ucmrwtkdbi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ucmrwtkdbi .gt_font_normal {
+  font-weight: normal;
+}
+
+#ucmrwtkdbi .gt_font_bold {
+  font-weight: bold;
+}
+
+#ucmrwtkdbi .gt_font_italic {
+  font-style: italic;
+}
+
+#ucmrwtkdbi .gt_super {
+  font-size: 65%;
+}
+
+#ucmrwtkdbi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ucmrwtkdbi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ucmrwtkdbi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ucmrwtkdbi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ucmrwtkdbi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ucmrwtkdbi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ucmrwtkdbi .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ucmrwtkdbi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ucmrwtkdbi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="value" class="gt_row gt_right">0</td>
+<td headers="label" class="gt_row gt_left">Agriculture, forestry and fishery</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">1</td>
+<td headers="label" class="gt_row gt_left">Ores and minerals; electricity, gas and water</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">2</td>
+<td headers="label" class="gt_row gt_left">Food products, beverages and tobacco, textiles, apparel and leather products</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">3</td>
+<td headers="label" class="gt_row gt_left">Other transportable goods, except metal products, machinery and equipment</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">4</td>
+<td headers="label" class="gt_row gt_left">Metal products, machinery and equipment</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">5</td>
+<td headers="label" class="gt_row gt_left">Intangible assets; land; constructions; construction services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">6</td>
+<td headers="label" class="gt_row gt_left">Distributive trade services; lodging; food and beverage serving services; transport services; and utilities distribution services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">7</td>
+<td headers="label" class="gt_row gt_left">Financial and related services; real estate services; and rental and leasing services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">8</td>
+<td headers="label" class="gt_row gt_left">Business and production services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">9</td>
+<td headers="label" class="gt_row gt_left">Community, social and personal services</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_pcpc.html">get_pcpc</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"sections"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<div id="rslsqjlmpg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rslsqjlmpg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rslsqjlmpg thead, #rslsqjlmpg tbody, #rslsqjlmpg tfoot, #rslsqjlmpg tr, #rslsqjlmpg td, #rslsqjlmpg th {
+  border-style: none;
+}
+
+#rslsqjlmpg p {
+  margin: 0;
+  padding: 0;
+}
+
+#rslsqjlmpg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rslsqjlmpg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rslsqjlmpg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rslsqjlmpg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rslsqjlmpg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rslsqjlmpg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rslsqjlmpg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rslsqjlmpg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rslsqjlmpg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rslsqjlmpg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rslsqjlmpg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rslsqjlmpg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rslsqjlmpg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rslsqjlmpg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rslsqjlmpg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rslsqjlmpg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rslsqjlmpg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rslsqjlmpg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rslsqjlmpg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rslsqjlmpg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rslsqjlmpg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rslsqjlmpg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rslsqjlmpg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rslsqjlmpg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rslsqjlmpg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rslsqjlmpg .gt_left {
+  text-align: left;
+}
+
+#rslsqjlmpg .gt_center {
+  text-align: center;
+}
+
+#rslsqjlmpg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rslsqjlmpg .gt_font_normal {
+  font-weight: normal;
+}
+
+#rslsqjlmpg .gt_font_bold {
+  font-weight: bold;
+}
+
+#rslsqjlmpg .gt_font_italic {
+  font-style: italic;
+}
+
+#rslsqjlmpg .gt_super {
+  font-size: 65%;
+}
+
+#rslsqjlmpg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rslsqjlmpg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rslsqjlmpg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rslsqjlmpg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rslsqjlmpg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rslsqjlmpg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rslsqjlmpg .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#rslsqjlmpg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#rslsqjlmpg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="value" class="gt_row gt_right">0</td>
+<td headers="label" class="gt_row gt_left">Agriculture, forestry and fishery</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">1</td>
+<td headers="label" class="gt_row gt_left">Ores and minerals; electricity, gas and water</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">2</td>
+<td headers="label" class="gt_row gt_left">Food products, beverages and tobacco, textiles, apparel and leather products</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">3</td>
+<td headers="label" class="gt_row gt_left">Other transportable goods, except metal products, machinery and equipment</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">4</td>
+<td headers="label" class="gt_row gt_left">Metal products, machinery and equipment</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">5</td>
+<td headers="label" class="gt_row gt_left">Intangible assets; land; constructions; construction services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">6</td>
+<td headers="label" class="gt_row gt_left">Distributive trade services; lodging; food and beverage serving services; transport services; and utilities distribution services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">7</td>
+<td headers="label" class="gt_row gt_left">Financial and related services; real estate services; and rental and leasing services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">8</td>
+<td headers="label" class="gt_row gt_left">Business and production services</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">9</td>
+<td headers="label" class="gt_row gt_left">Community, social and personal services</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section level2">
+<h2 id="philippine-standard-commodity-classification-system-psccs">Philippine Standard Commodity Classification System (PSCCS)<a class="anchor" aria-label="anchor" href="#philippine-standard-commodity-classification-system-psccs"></a>
+</h2>
+<p>The <a href="https://psa.gov.ph/classification/psccs" class="external-link">PSCCS</a>
+classifies commodities into sections, divisions, groups, classes, and
+sub-classes. The default returns all 1,870 items.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psccs.html">get_psccs</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<div id="udacgqflgk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#udacgqflgk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#udacgqflgk thead, #udacgqflgk tbody, #udacgqflgk tfoot, #udacgqflgk tr, #udacgqflgk td, #udacgqflgk th {
+  border-style: none;
+}
+
+#udacgqflgk p {
+  margin: 0;
+  padding: 0;
+}
+
+#udacgqflgk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#udacgqflgk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#udacgqflgk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#udacgqflgk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#udacgqflgk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#udacgqflgk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#udacgqflgk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#udacgqflgk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#udacgqflgk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#udacgqflgk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#udacgqflgk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#udacgqflgk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#udacgqflgk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#udacgqflgk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#udacgqflgk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#udacgqflgk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#udacgqflgk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#udacgqflgk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#udacgqflgk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#udacgqflgk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#udacgqflgk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#udacgqflgk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#udacgqflgk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#udacgqflgk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#udacgqflgk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#udacgqflgk .gt_left {
+  text-align: left;
+}
+
+#udacgqflgk .gt_center {
+  text-align: center;
+}
+
+#udacgqflgk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#udacgqflgk .gt_font_normal {
+  font-weight: normal;
+}
+
+#udacgqflgk .gt_font_bold {
+  font-weight: bold;
+}
+
+#udacgqflgk .gt_font_italic {
+  font-style: italic;
+}
+
+#udacgqflgk .gt_super {
+  font-size: 65%;
+}
+
+#udacgqflgk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#udacgqflgk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#udacgqflgk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#udacgqflgk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#udacgqflgk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#udacgqflgk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#udacgqflgk .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#udacgqflgk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#udacgqflgk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="value" class="gt_row gt_right">01</td>
+<td headers="label" class="gt_row gt_left">Acts leading to death or intending to cause death</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">02</td>
+<td headers="label" class="gt_row gt_left">Acts leading to harm or intending to cause harm to the person</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">03</td>
+<td headers="label" class="gt_row gt_left">Injurious acts of a sexual nature</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">04</td>
+<td headers="label" class="gt_row gt_left">Acts against property involving violence or threat against a person</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">05</td>
+<td headers="label" class="gt_row gt_left">Acts against property only</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">06</td>
+<td headers="label" class="gt_row gt_left">Acts involving controlled drugs or other psychoactive substances</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">07</td>
+<td headers="label" class="gt_row gt_left">Acts involving fraud, deception or corruption</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">08</td>
+<td headers="label" class="gt_row gt_left">Acts against public order, authority and provisions of the State</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">09</td>
+<td headers="label" class="gt_row gt_left">Acts against public safety and state security</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">10</td>
+<td headers="label" class="gt_row gt_left">Acts against the natural environment</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_psccs.html">get_psccs</a></span><span class="op">(</span>level <span class="op">=</span> <span class="st">"section"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.align <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></code></pre></div>
+<div id="jhvqltorlv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jhvqltorlv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jhvqltorlv thead, #jhvqltorlv tbody, #jhvqltorlv tfoot, #jhvqltorlv tr, #jhvqltorlv td, #jhvqltorlv th {
+  border-style: none;
+}
+
+#jhvqltorlv p {
+  margin: 0;
+  padding: 0;
+}
+
+#jhvqltorlv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: 0;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jhvqltorlv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jhvqltorlv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jhvqltorlv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jhvqltorlv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jhvqltorlv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jhvqltorlv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jhvqltorlv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jhvqltorlv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jhvqltorlv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jhvqltorlv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jhvqltorlv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jhvqltorlv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jhvqltorlv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jhvqltorlv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhvqltorlv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jhvqltorlv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jhvqltorlv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jhvqltorlv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhvqltorlv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jhvqltorlv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhvqltorlv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jhvqltorlv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhvqltorlv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jhvqltorlv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhvqltorlv .gt_left {
+  text-align: left;
+}
+
+#jhvqltorlv .gt_center {
+  text-align: center;
+}
+
+#jhvqltorlv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jhvqltorlv .gt_font_normal {
+  font-weight: normal;
+}
+
+#jhvqltorlv .gt_font_bold {
+  font-weight: bold;
+}
+
+#jhvqltorlv .gt_font_italic {
+  font-style: italic;
+}
+
+#jhvqltorlv .gt_super {
+  font-size: 65%;
+}
+
+#jhvqltorlv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jhvqltorlv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jhvqltorlv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jhvqltorlv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jhvqltorlv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jhvqltorlv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jhvqltorlv .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jhvqltorlv .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jhvqltorlv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="value">value</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label">label</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="value" class="gt_row gt_right">01</td>
+<td headers="label" class="gt_row gt_left">Acts leading to death or intending to cause death</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">02</td>
+<td headers="label" class="gt_row gt_left">Acts leading to harm or intending to cause harm to the person</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">03</td>
+<td headers="label" class="gt_row gt_left">Injurious acts of a sexual nature</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">04</td>
+<td headers="label" class="gt_row gt_left">Acts against property involving violence or threat against a person</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">05</td>
+<td headers="label" class="gt_row gt_left">Acts against property only</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">06</td>
+<td headers="label" class="gt_row gt_left">Acts involving controlled drugs or other psychoactive substances</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">07</td>
+<td headers="label" class="gt_row gt_left">Acts involving fraud, deception or corruption</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">08</td>
+<td headers="label" class="gt_row gt_left">Acts against public order, authority and provisions of the State</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">09</td>
+<td headers="label" class="gt_row gt_left">Acts against public safety and state security</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">10</td>
+<td headers="label" class="gt_row gt_left">Acts against the natural environment</td>
+</tr>
+<tr>
+<td headers="value" class="gt_row gt_right">11</td>
+<td headers="label" class="gt_row gt_left">Other criminal acts not elsewhere classified</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -4255,7 +8539,7 @@ divisions or groups.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
