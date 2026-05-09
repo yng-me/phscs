@@ -20,9 +20,17 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/phscs)](https://CRAN.R-project.org/package=phscs)
 <!-- badges: end -->
 
-The goal of `phscs` is to provide a unified interface to access and manipulate various Philippine statistical classifications, such as the Philippine Standard Geographic Code (PSGC), Philippine Standard Industrial Classification (PSIC), Philippine Standard Occupational Classification (PSOC), and others.
+`phscs` provides a single, consistent interface to seven [Philippine Statistics Authority](https://psa.gov.ph/classification) (PSA) classification systems. All data is **bundled with the package** — no internet connection or API token required.
 
-It allows users to retrieve, filter, and harmonize classification data from the [Philippine Statistics Authority](https://psa.gov.ph/classification) (PSA)'s open-access data and other sources, making it easier to work with Philippine statistical data in R.
+| Function | Classification |
+|---|---|
+| `get_psgc()` | Philippine Standard Geographic Code |
+| `get_psic()` | Philippine Standard Industrial Classification |
+| `get_psoc()` | Philippine Standard Occupational Classification |
+| `get_psced()` | Philippine Standard Classification of Education |
+| `get_pcoicop()` | Phil. Classification of Individual Consumption According to Purpose |
+| `get_pcpc()` | Philippine Central Product Classification |
+| `get_psccs()` | Philippine Standard Commodity Classification System |
 
 ## Installation
 
@@ -32,7 +40,7 @@ Install from CRAN:
 install.packages("phscs")
 ```
 
-You can also install the development version of `phscs` from GitHub using the `pak` package:
+Or install the development version from GitHub:
 
 ``` r
 # install.packages("pak")
@@ -41,18 +49,37 @@ pak::pak("yng-me/phscs")
 
 ## Usage
 
-``` r
+```{r usage, message=FALSE}
 library(phscs)
 
-# Retrieve Philippine Standard Geographic Code (PSGC) data
-psgc_data <- get_psgc()
-head(psgc_data)
+# Geographic data — re-exported from the psgc package
+get_psgc(geographic_level = "region") |> head(3)
 
-# Retrieve Philippine Standard Industrial Classification (PSIC) data
-psic_data <- get_psic()
-head(psic_data)
+# Industrial classification (default: sub-classes)
+get_psic() |> head(3)
 
-# Retrieve Philippine Standard Occupational Classification (PSOC) data
-psoc_data <- get_psoc()
-head(psoc_data)
+# Occupational classification (default: unit groups)
+get_psoc() |> head(3)
 ```
+
+All classification functions share the same interface:
+
+```r
+# Choose a level of detail
+get_psic(level = "sections")
+get_psoc(level = "major")
+get_pcoicop(level = "divisions")
+
+# Include the full text description
+get_psic(level = "sections", cols = "description")
+
+# Switch to an older edition (where available)
+get_pcoicop(version = "2009")
+```
+
+For a full walkthrough of every classification and more examples, see:
+
+``` r
+vignette("phscs")
+```
+

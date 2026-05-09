@@ -1,7 +1,5 @@
 test_that("get_psced retrieves data correctly", {
 
-  skip_if_offline(host = "github.com")
-
   psced_data <- get_psced()
 
   expect_s3_class(psced_data, "data.frame")

@@ -1,132 +1,34 @@
 #' Philippine Central Product Classification (PCPC)
 #'
-#' @param ... See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.
-#' @param token Character. API access token.
-#' @param version Character. Version of the PCPC to retrieve. Default is \code{NULL}. If \code{NULL}, the latest version is used.
-#' @param level Character. Level of detail to retrieve. Options are \code{"all"}, \code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"}, \code{"sub-classes"}, and \code{"item"}.
-#' @param harmonize Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.
-#' @param minimal Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.
-#' @param cols Optional. Character vector of additional columns to include when \code{minimal = FALSE}.
+#' @param version Character. Version of the PCPC dataset. Default is the
+#'   latest available (\code{"2002"}).
+#' @param level Character. Classification level: \code{"all"},
+#'   \code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"},
+#'   \code{"sub-classes"}, or \code{"item"} (default).
+#' @param minimal Logical. If \code{TRUE} (default), returns only \code{value}
+#'   and \code{label} columns.
+#' @param cols Optional character vector of additional columns to include
+#'   (\code{"description"} is the only extra column available).
 #'
-#' @return A tibble containing the requested PCPC data.
+#' @return A data frame of PCPC classifications.
 #' @export
 #' @references \url{https://psa.gov.ph/classification/pcpc}
 #'
 #' @examples
-#' \dontrun{
-#' get_pcpc(token = "your_api_token")
-#' }
-#'
-#' # If token is not provided, the function will fetch from local cache or
-#' # download the latest version from remote repo
 #' pcpc <- get_pcpc()
-#'
-#' # Get specific level
-#' pcpc_filtered <- get_pcpc(level = "sections")
-#' pcpc_filtered
+#' pcpc_sections <- get_pcpc(level = "sections")
 
-get_pcpc <- function(..., token = NULL, version = NULL, level = NULL, harmonize = TRUE, minimal = TRUE, cols = NULL) {
-
-  level_default <- "all"
-
-  arg <- eval_args(
-    what = "pcpc",
-    version = version,
-    level = level,
-    level_default
-  )
-
-  get_data(
-    what = "pcpc",
-    version = arg$version,
-    level = arg$level,
-    ...,
-    token = token,
-    harmonize = harmonize & level == level_default,
-    minimal = minimal,
-    cols = cols
-  )
-
+get_pcpc <- function(version = NULL, level = NULL, minimal = TRUE, cols = NULL) {
+  arg  <- eval_args("pcpc", version, level, "all")
+  data <- get_cache("pcpc", arg$version)
+  get_tidy(data, arg$level, .pcpc_level_map, minimal, cols)
 }
 
-
-parse_pcpc <- function(data, minimal = TRUE, col = NULL) {
-
-  data |>
-    dplyr::transmute(
-      id,
-      section__value = clean_text(section),
-      section__label = stringr::str_to_sentence(clean_text(section_title)),
-      division__value = clean_text(divisioncode),
-      division__label = stringr::str_to_sentence(clean_text(division_title)),
-      division__description = clean_text(division_desc),
-      group__value = clean_text(groupcode),
-      group__label = clean_text(group_title),
-      group__description = clean_text(groupdesc),
-      class__value = clean_text(classcode),
-      class__label = clean_text(class_title),
-      class__description = clean_text(classdesc),
-      sub_class__value = clean_text(subclasscode),
-      sub_class__label = clean_text(subclass_title),
-      subclass__description = clean_text(subclassdesc),
-      item__value = clean_text(itemcode),
-      item__label = clean_text(item_title),
-      item__description = clean_text(itemdesc)
-    ) |>
-    tidyr::pivot_longer(-id) |>
-    dplyr::mutate(
-      level = stringr::str_split_i(name, '__', 1),
-      col = stringr::str_split_i(name, '__', 2),
-    ) |>
-    dplyr::select(-name) |>
-    tidyr::pivot_wider(names_from = col, values_from = value) |>
-    dplyr::select(-id) |>
-    dplyr::filter(!is.na(value)) |>
-    dplyr::distinct(value, .keep_all = T) |>
-    dplyr::mutate(
-      level = dplyr::case_when(
-        level == "section" ~ 1L,
-        level == "division" ~ 2L,
-        level == "group" ~ 3L,
-        level == "class" ~ 4L,
-        level == "sub_class" ~ 5L,
-        level == "item" ~ 6L,
-        TRUE ~ NA_integer_
-      )
-    ) |>
-    dplyr::filter(!is.na(level)) |>
-    dplyr::arrange(level)
-
-}
-
-
-get_tidy_pcpc <- function(data, level, minimal, cols = NULL) {
-
-  if(level == "sections") {
-    data <- dplyr::filter(data, level == 1L)
-  } else if(level == "divisions") {
-    data <- dplyr::filter(data, level == 2L)
-  } else if(level == "groups") {
-    data <- dplyr::filter(data, level == 3L)
-  } else if(level == "classes") {
-    data <- dplyr::filter(data, level == 4L)
-  } else if(level == "sub-classes") {
-    data <- dplyr::filter(data, level == 5L)
-  } else if(level == "item") {
-    data <- dplyr::filter(data, level == 6L)
-  }
-
-  if(minimal) {
-    data <- dplyr::select(
-      data,
-      value,
-      label,
-      dplyr::any_of(cols)
-    )
-  }
-
-  data
-
-}
-
-
+.pcpc_level_map <- list(
+  "sections"    = 1L,
+  "divisions"   = 2L,
+  "groups"      = 3L,
+  "classes"     = 4L,
+  "sub-classes" = 5L,
+  "item"        = 6L
+)

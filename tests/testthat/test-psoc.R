@@ -1,7 +1,5 @@
 test_that("get_psoc retrieves data correctly", {
 
-  skip_if_offline(host = "github.com")
-
   psoc_data <- get_psoc()
 
   expect_s3_class(psoc_data, "data.frame")

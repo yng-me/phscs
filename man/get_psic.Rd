@@ -4,30 +4,21 @@
 \alias{get_psic}
 \title{Philippine Standard Industrial Classification (PSIC)}
 \usage{
-get_psic(
-  ...,
-  token = NULL,
-  version = NULL,
-  level = NULL,
-  harmonize = TRUE,
-  minimal = TRUE,
-  cols = NULL
-)
+get_psic(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 }
 \arguments{
-\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+\item{version}{Character. Version of the PSIC dataset. Default is the
+latest available (\code{"2019"}).}
 
-\item{token}{Character. API access token.}
+\item{level}{Character. Classification level: \code{"all"},
+\code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"},
+or \code{"sub-classes"} (default).}
 
-\item{version}{Character. Version of the PSIC dataset. Default is \code{NULL}. If \code{NULL}, the latest version is used.}
+\item{minimal}{Logical. If \code{TRUE} (default), returns only \code{value}
+and \code{label} columns.}
 
-\item{level}{Character. Classification level such as \code{"all"}, \code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"}, and \code{"sub-classes"}.}
-
-\item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
-
-\item{minimal}{Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.}
-
-\item{cols}{Optional. Character vector of additional columns to include when \code{minimal = FALSE}.}
+\item{cols}{Optional character vector of additional columns to include
+(\code{"description"} is the only extra column available).}
 }
 \value{
 A data frame of PSIC classifications.
@@ -36,16 +27,8 @@ A data frame of PSIC classifications.
 Philippine Standard Industrial Classification (PSIC)
 }
 \examples{
-\dontrun{
-get_psic(token = "your_api_token")
-}
-# If token is not provided, the function will fetch from local cache or
-# download the latest version from remote repo
 psic <- get_psic()
-
-# Get specific level
-psic_filtered <- get_psic(level = "sections")
-psic_filtered
+psic_sections <- get_psic(level = "sections")
 }
 \references{
 \url{https://psa.gov.ph/classification/psic}

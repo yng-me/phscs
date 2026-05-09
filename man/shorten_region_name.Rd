@@ -9,18 +9,21 @@ shorten_region_name(data, which = c("label", "number"), col = "area_name")
 \arguments{
 \item{data}{A data frame containing PSGC data.}
 
-\item{which}{Character. Specifies whether to shorten the region name by label or number. Options are \code{"label"} or \code{"number"}.}
+\item{which}{Character. Specifies whether to shorten the region name by
+label or number. Options are \code{"label"} or \code{"number"}.}
 
-\item{col}{Character. The name of the column containing the area names. Default is \code{"area_name"}.}
+\item{col}{Character. The name of the column containing the area names.
+Default is \code{"area_name"}.}
 }
 \value{
-A data frame with the region names shortened based on the specified \code{which} argument.
+A data frame with the region names shortened based on the specified
+  \code{which} argument.
 }
 \description{
 This function shortens the region names in a PSGC data frame.
 }
 \examples{
-regions <- get_psgc(level = "regions")
+regions <- get_psgc(geographic_level = "region")
 shorten_region_name(regions)
 shorten_region_name(regions, which = "number")
 }

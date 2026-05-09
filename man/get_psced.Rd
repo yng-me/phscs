@@ -4,30 +4,21 @@
 \alias{get_psced}
 \title{Philippine Standard Classification of Education (PSCED)}
 \usage{
-get_psced(
-  ...,
-  token = NULL,
-  version = NULL,
-  level = NULL,
-  harmonize = TRUE,
-  minimal = TRUE,
-  cols = NULL
-)
+get_psced(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 }
 \arguments{
-\item{...}{See \code{?dplyr::filter}. Expressions that return a logical value, and are defined in terms of the variables in returned data. If multiple expressions are included, they are combined with the & operator. Only rows for which all conditions evaluate to TRUE are kept.}
+\item{version}{Character. Version of the PSCED dataset. Default is the
+latest available (\code{"2017"}).}
 
-\item{token}{Character. API access token.}
+\item{level}{Character. Classification level: \code{"all"},
+\code{"levels"}, \code{"broadfield"}, \code{"narrowfield"}, or
+\code{"detailedfield"} (default).}
 
-\item{version}{Character. Version of the PSCED dataset. Default is \code{NULL}. If \code{NULL}, the latest version is used.}
+\item{minimal}{Logical. If \code{TRUE} (default), returns only \code{value}
+and \code{label} columns.}
 
-\item{level}{Character. Classification levels such as \code{"all"}, \code{"levels"}, \code{"broadfield"}, \code{"narrowfield"}, and \code{"detailedfield"}. Default is \code{"detailedfield"}.}
-
-\item{harmonize}{Logical. If \code{TRUE}, formats and standardizes the returned data. Default is \code{TRUE}.}
-
-\item{minimal}{Logical. If \code{TRUE}, returns a simplified dataset. Default is \code{TRUE}.}
-
-\item{cols}{Optional. Character vector of additional columns to include when \code{minimal = FALSE}.}
+\item{cols}{Optional character vector of additional columns to include
+(\code{"description"} is the only extra column available).}
 }
 \value{
 A data frame of PSCED classifications.
@@ -36,16 +27,8 @@ A data frame of PSCED classifications.
 Philippine Standard Classification of Education (PSCED)
 }
 \examples{
-\dontrun{
-get_psced(token = "your_api_token")
-}
-# If token is not provided, the function will fetch from local cache or
-# download the latest version from remote repo
 psced <- get_psced()
-
-# Get specific level
-psced_filtered <- get_psced(level = "levels")
-psced_filtered
+psced_levels <- get_psced(level = "levels")
 }
 \references{
 \url{https://psa.gov.ph/classification/psced}

@@ -1,7 +1,5 @@
 test_that("get_psic retrieves data correctly", {
 
-  skip_if_offline(host = "github.com")
-
   psic_data <- get_psic()
 
   expect_s3_class(psic_data, "data.frame")
