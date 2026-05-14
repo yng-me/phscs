@@ -1,8 +1,18 @@
 url: https://yng-me.github.io/phscs/
 template:
   bootstrap: 5
+  includes:
+    in_header: |
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZCW6K6XRM"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-SZCW6K6XRM');
+      </script>
   bslib:
     base_font: {google: "Roboto"}
     heading_font: {google: "Roboto"}
     code_font: {google: "JetBrains Mono"}
-
