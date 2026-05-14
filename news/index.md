@@ -2,6 +2,8 @@
 
 ## phscs 0.2.0
 
+CRAN release: 2026-05-13
+
 ### Breaking changes
 
 - **[`get_psgc()`](https://yng-me.github.io/phscs/reference/get_psgc.md)
