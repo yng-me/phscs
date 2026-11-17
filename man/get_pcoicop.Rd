@@ -10,9 +10,9 @@ get_pcoicop(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 \item{version}{Character. Version of the PCOICOP dataset. Default is the
 latest available (\code{"2020"}). Use \code{"2009"} for the 2009 edition.}
 
-\item{level}{Character. Classification level: \code{"all"},
+\item{level}{Character. Classification level: \code{"all"} (default),
 \code{"divisions"}, \code{"groups"}, \code{"class"}, \code{"sub-class"},
-\code{"item"}, or \code{"subitem"} (default).}
+\code{"item"}, or \code{"subitem"}.}
 
 \item{minimal}{Logical. If \code{TRUE} (default), returns only \code{value}
 and \code{label} columns.}

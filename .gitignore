@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 .DS_Store
-
+.env
 
 playground
 inst/doc
@@ -12,3 +12,5 @@ docs
 /doc/
 /Meta/
 .positai
+
+data-raw/fetcher.R

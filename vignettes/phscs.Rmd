@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(phscs)
 ```
 
-The `phscs` package provides a single, consistent interface to seven Philippine Statistical Authority (PSA) classification systems. All data is **bundled with the package** — no internet connection or API token is required.
+The `phscs` package provides a single, consistent interface to eight Philippine Statistical Authority (PSA) classification systems. All data is **bundled with the package** — no internet connection or API token is required.
 
 | Function | Classification | Source |
 |---|---|---|
@@ -29,6 +29,7 @@ The `phscs` package provides a single, consistent interface to seven Philippine 
 | `get_pcoicop()` | Phil. Classification of Individual Consumption According to Purpose | PSA |
 | `get_pcpc()` | Philippine Central Product Classification | PSA |
 | `get_psccs()` | Philippine Standard Commodity Classification System | PSA |
+| `get_ptscs()` | Philippine Tourism Statistical Classification System | PSA |
 
 ## Installation
 
@@ -52,7 +53,7 @@ All classification functions share the same parameters:
 | Parameter | Default | Description |
 |---|---|---|
 | `version` | latest | Which edition of the standard to use (e.g. `"2019"`, `"2009"`) |
-| `level` | most detailed | Which level of the hierarchy to return |
+| `level` | most detailed (`"all"` for PCOICOP, PCPC, PSCCS) | Which level of the hierarchy to return |
 | `minimal` | `TRUE` | Return only `value` and `label`; set `FALSE` for all columns |
 | `cols` | `NULL` | Extra columns to include alongside `value` and `label` (e.g. `"description"`) |
 
@@ -203,6 +204,22 @@ get_psccs() |>
 
 ```{r psccs-section}
 get_psccs(level = "section") |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+## Philippine Tourism Statistical Classification System (PTSCS)
+
+The [PTSCS](https://psa.gov.ph/classification/ptsc) lists tourism characteristic industries and products. It has no `version` or `level` argument: choose the list with `type`. The two lists reuse the same codes. It returns `id`, `category_id`, `description` and `keywords` instead of `value` and `label`; `keywords` is a list column for industries (split by comma) and the original text for products.
+
+```{r ptscs-industries}
+get_ptscs()[, c("category_id", "description")] |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+```{r ptscs-products}
+get_ptscs(type = "products")[, c("category_id", "description")] |>
   gt::gt() |>
   gt::tab_options(table.align = "left")
 ```

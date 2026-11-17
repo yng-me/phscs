@@ -2,9 +2,9 @@
 #'
 #' @param version Character. Version of the PCOICOP dataset. Default is the
 #'   latest available (\code{"2020"}). Use \code{"2009"} for the 2009 edition.
-#' @param level Character. Classification level: \code{"all"},
+#' @param level Character. Classification level: \code{"all"} (default),
 #'   \code{"divisions"}, \code{"groups"}, \code{"class"}, \code{"sub-class"},
-#'   \code{"item"}, or \code{"subitem"} (default).
+#'   \code{"item"}, or \code{"subitem"}.
 #' @param minimal Logical. If \code{TRUE} (default), returns only \code{value}
 #'   and \code{label} columns.
 #' @param cols Optional character vector of additional columns to include
@@ -30,9 +30,7 @@ get_pcoicop <- function(version = NULL, level = NULL, minimal = TRUE, cols = NUL
   "groups"     = 2L,
   "class"      = 3L,
   "sub-class"  = 4L,
-  "sub_class"  = 4L,
   "item"       = 5L,
-  "subitem"    = 6L,
-  "sub_item"   = 6L
+  "subitem"    = 6L
 )
 

@@ -21,7 +21,9 @@ and \code{label} columns.}
 (\code{"description"} is the only extra column available).}
 }
 \value{
-A data frame of PSCED classifications.
+A data frame of PSCED classifications. When included (\code{minimal = FALSE}
+  or \code{cols = "level"}), \code{level} is the education level code
+  (\code{"0"} early childhood to \code{"8"} doctoral), not the hierarchy depth.
 }
 \description{
 Philippine Standard Classification of Education (PSCED)

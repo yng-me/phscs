@@ -40,6 +40,8 @@ parse_tidy <- function(df, specs) {
     s     <- specs[[i]]
     val   <- clean_text(as.character(df[[s$value_col]]))
     lab   <- if (!is.null(s$label_col)) clean_text(df[[s$label_col]]) else val
+    # some source rows have a blank title; the title then opens the description
+    if (!is.null(s$desc_col)) lab <- ifelse(is.na(lab), clean_text(sub("\n.*", "", df[[s$desc_col]])), lab)
     if (!is.null(s$label_fn)) lab <- s$label_fn(lab)
     desc  <- if (!is.null(s$desc_col))  clean_text(df[[s$desc_col]])  else NA_character_
 
@@ -122,21 +124,23 @@ phscs_pcpc <- list(
 message("  PCPC 2002: ", nrow(phscs_pcpc[["2002"]]), " rows")
 
 # ── PSCED ─────────────────────────────────────────────────────────────────────
-# Note: JSON column "level" is the education level code; renamed to avoid clash.
+# Each level is read from its own source file, codes and titles as published.
+# (In 2017-all.json the tertiary broad/narrow codes repeat with differing titles.)
+# JSON column "level" is the education level code, not the hierarchy depth.
 
-parse_psced <- function(df) {
-  names(df)[names(df) == "level"] <- "level_code"
-  parse_tidy(df, list(
-    list(level_int = 1L, value_col = "level_code",      label_col = "level_title",          desc_col = NULL),
-    list(level_int = 2L, value_col = "broadfield",      label_col = "broadfield_title",     desc_col = "broadfielddesc"),
-    list(level_int = 3L, value_col = "narrowfield",     label_col = "narrowfield_title",    desc_col = "narrowfielddesc"),
-    list(level_int = 4L, value_col = "detailedfield",   label_col = "detailedfield_title",  desc_col = "detailedfielddesc")
-  ))
+parse_psced <- function(version) {
+  f <- function(what) load_json(sprintf("data-raw/psced/%s-%s.json", version, what))
+  rbind(
+    parse_tidy(f("levels"),        list(list(level_int = 1L, value_col = "level",         label_col = "level_title",         desc_col = NULL))),
+    parse_tidy(f("broadfield"),    list(list(level_int = 2L, value_col = "broadfield",    label_col = "broadfield_title",    desc_col = "broadfielddesc"))),
+    parse_tidy(f("narrowfield"),   list(list(level_int = 3L, value_col = "narrowfield",   label_col = "narrowfield_title",   desc_col = "narrowfielddesc"))),
+    parse_tidy(f("detailedfield"), list(list(level_int = 4L, value_col = "detailedfield", label_col = "detailedfield_title", desc_col = "detailedfielddesc")))
+  )
 }
 
 message("Building PSCED...")
 phscs_psced <- list(
-  "2017" = parse_psced(load_json("data-raw/psced/2017-all.json"))
+  "2017" = parse_psced("2017")
 )
 message("  PSCED 2017: ", nrow(phscs_psced[["2017"]]), " rows")
 
@@ -162,7 +166,7 @@ parse_pcoicop <- function(df) {
     list(level_int = 3L, value_col = "class_code",  label_col = "class_title",     desc_col = "classdesc"),
     list(level_int = 4L, value_col = "subclass",    label_col = "subclass_title",  desc_col = "subclassdesc"),
     list(level_int = 5L, value_col = "item",        label_col = "item_title",      desc_col = "itemdesc"),
-    list(level_int = 6L, value_col = "subitem",     label_col = NULL,              desc_col = "subitemdesc")
+    list(level_int = 6L, value_col = "subitem",     label_col = "subitemdesc",     desc_col = "subitemdesc")
   ))
 }
 
@@ -177,6 +181,8 @@ message("  PCOICOP 2009: ", nrow(phscs_pcoicop[["2009"]]), " rows")
 # ── PSCCS ─────────────────────────────────────────────────────────────────────
 
 parse_psccs <- function(df) {
+  # 0103129 appears twice (arson, robbery); 2018-sub-classes.json has robbery
+  df <- df[!(df$subclasscode %in% "0103129" & grepl("arson", df$subclass_title, ignore.case = TRUE)), ]
   parse_tidy(df, list(
     list(level_int = 1L, value_col = "sectioncode",  label_col = "section_title",   desc_col = "sectiondesc"),
     list(level_int = 2L, value_col = "divisioncode", label_col = "division_title",  desc_col = "divisiondesc"),
@@ -192,6 +198,33 @@ phscs_psccs <- list(
 )
 message("  PSCCS 2018: ", nrow(phscs_psccs[["2018"]]), " rows")
 
+# ── PTSCS ─────────────────────────────────────────────────────────────────────
+# Two flat lists that reuse the same codes (1 to 12.x). The source has no edition.
+# Industry `keywords` are comma-separated, so they become a list column.
+# Product `keywords` hold the "Includes ..." text, kept as the original text (sep = NULL).
+
+parse_ptscs <- function(df, sep = NULL) {
+  kw <- df$keywords
+  if (!is.null(sep)) {
+    kw <- lapply(strsplit(ifelse(is.na(kw), "", kw), sep), function(k) { k <- trimws(k); k[nzchar(k)] })
+  }
+  out <- data.frame(
+    id          = df$id,
+    category_id = df$categoryid,
+    description = df$categorydesc,
+    stringsAsFactors = FALSE
+  )
+  out$keywords <- kw
+  out
+}
+
+message("Building PTSCS...")
+phscs_ptscs <- list(
+  industries = parse_ptscs(load_json("data-raw/ptscs/industry.json"), sep = ","),
+  products   = parse_ptscs(load_json("data-raw/ptscs/products.json"))
+)
+message("  PTSCS: ", nrow(phscs_ptscs$industries), " industries, ", nrow(phscs_ptscs$products), " products")
+
 # ── Save internal data ────────────────────────────────────────────────────────
 
 message("Saving internal data...")
@@ -202,6 +235,7 @@ usethis::use_data(
   phscs_psced,
   phscs_pcoicop,
   phscs_psccs,
+  phscs_ptscs,
   internal  = TRUE,
   overwrite = TRUE,
   compress  = "xz"

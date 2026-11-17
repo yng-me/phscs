@@ -26,7 +26,6 @@ get_psoc <- function(version = NULL, level = NULL, minimal = TRUE, cols = NULL) 
 .psoc_level_map <- list(
   "major"     = 1L,
   "sub-major" = 2L,
-  "sub_major" = 2L,
   "minor"     = 3L,
   "unit"      = 4L
 )

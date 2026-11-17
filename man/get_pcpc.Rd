@@ -10,9 +10,9 @@ get_pcpc(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 \item{version}{Character. Version of the PCPC dataset. Default is the
 latest available (\code{"2002"}).}
 
-\item{level}{Character. Classification level: \code{"all"},
+\item{level}{Character. Classification level: \code{"all"} (default),
 \code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"},
-\code{"sub-classes"}, or \code{"item"} (default).}
+\code{"sub-classes"}, or \code{"item"}.}
 
 \item{minimal}{Logical. If \code{TRUE} (default), returns only \code{value}
 and \code{label} columns.}
