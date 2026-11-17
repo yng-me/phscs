@@ -17,5 +17,7 @@
   Philippine Standard Industrial Classification (PSIC)
 - [`get_psoc()`](https://yng-me.github.io/phscs/reference/get_psoc.md) :
   Philippine Standard Occupational Classification (PSOC)
+- [`get_ptscs()`](https://yng-me.github.io/phscs/reference/get_ptscs.md)
+  : Philippine Tourism Statistical Classification System (PTSCS)
 - [`shorten_region_name()`](https://yng-me.github.io/phscs/reference/shorten_region_name.md)
   : Shorten region name

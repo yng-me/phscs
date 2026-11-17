@@ -1,6 +1,6 @@
 # Getting Started with phscs
 
-The `phscs` package provides a single, consistent interface to seven
+The `phscs` package provides a single, consistent interface to eight
 Philippine Statistical Authority (PSA) classification systems. All data
 is **bundled with the package** — no internet connection or API token is
 required.
@@ -14,6 +14,7 @@ required.
 | [`get_pcoicop()`](https://yng-me.github.io/phscs/reference/get_pcoicop.md) | Phil. Classification of Individual Consumption According to Purpose | PSA |
 | [`get_pcpc()`](https://yng-me.github.io/phscs/reference/get_pcpc.md) | Philippine Central Product Classification | PSA |
 | [`get_psccs()`](https://yng-me.github.io/phscs/reference/get_psccs.md) | Philippine Standard Commodity Classification System | PSA |
+| [`get_ptscs()`](https://yng-me.github.io/phscs/reference/get_ptscs.md) | Philippine Tourism Statistical Classification System | PSA |
 
 ## Installation
 
@@ -39,7 +40,7 @@ All classification functions share the same parameters:
 | Parameter | Default | Description |
 |----|----|----|
 | `version` | latest | Which edition of the standard to use (e.g. `"2019"`, `"2009"`) |
-| `level` | most detailed | Which level of the hierarchy to return |
+| `level` | most detailed (`"all"` for PCOICOP, PCPC, PSCCS) | Which level of the hierarchy to return |
 | `minimal` | `TRUE` | Return only `value` and `label`; set `FALSE` for all columns |
 | `cols` | `NULL` | Extra columns to include alongside `value` and `label` (e.g. `"description"`) |
 
@@ -84,6 +85,15 @@ psgc_regions |>
 | psgc_code | area_name | correspondence_code | geographic_level | old_name | city_class | income_classification | urban_rural | island_region |
 |----|----|----|----|----|----|----|----|----|
 | 0100000000 | Region I (Ilocos Region) | 010000000 | Reg | NA | NA | NA | NA | L |
+| 1000000000 | Region X (Northern Mindanao) | 100000000 | Reg | NA | NA | NA | NA | M |
+| 1100000000 | Region XI (Davao Region) | 110000000 | Reg | NA | NA | NA | NA | M |
+| 1200000000 | Region XII (SOCCSKSARGEN) | 120000000 | Reg | NA | NA | NA | NA | M |
+| 1300000000 | National Capital Region (NCR) | 130000000 | Reg | NA | NA | NA | NA | L |
+| 1400000000 | Cordillera Administrative Region (CAR) | 140000000 | Reg | NA | NA | NA | NA | L |
+| 1600000000 | Region XIII (Caraga) | 160000000 | Reg | NA | NA | NA | NA | M |
+| 1700000000 | MIMAROPA Region | 170000000 | Reg | NA | NA | NA | NA | L |
+| 1800000000 | Negros Island Region (NIR) | 000000000 | Reg | NA | NA | NA | NA | V |
+| 1900000000 | Bangsamoro Autonomous Region In Muslim Mindanao (BARMM) | 150000000 | Reg | NA | NA | NA | NA | M |
 | 0200000000 | Region II (Cagayan Valley) | 020000000 | Reg | NA | NA | NA | NA | L |
 | 0300000000 | Region III (Central Luzon) | 030000000 | Reg | NA | NA | NA | NA | L |
 | 0400000000 | Region IV-A (CALABARZON) | 040000000 | Reg | NA | NA | NA | NA | L |
@@ -92,15 +102,6 @@ psgc_regions |>
 | 0700000000 | Region VII (Central Visayas) | 070000000 | Reg | NA | NA | NA | NA | V |
 | 0800000000 | Region VIII (Eastern Visayas) | 080000000 | Reg | NA | NA | NA | NA | V |
 | 0900000000 | Region IX (Zamboanga Peninsula) | 090000000 | Reg | NA | NA | NA | NA | M |
-| 1000000000 | Region X (Northern Mindanao) | 100000000 | Reg | NA | NA | NA | NA | M |
-| 1100000000 | Region XI (Davao Region) | 110000000 | Reg | NA | NA | NA | NA | M |
-| 1200000000 | Region XII (SOCCSKSARGEN) | 120000000 | Reg | NA | NA | NA | NA | M |
-| 1300000000 | National Capital Region (NCR) | 130000000 | Reg | NA | NA | NA | NA | L |
-| 1400000000 | Cordillera Administrative Region (CAR) | 140000000 | Reg | NA | NA | NA | NA | L |
-| 1600000000 | Region XIII (Caraga) | 160000000 | Reg | NA | NA | NA | NA | M |
-| 1700000000 | MIMAROPA Region | 170000000 | Reg | NA | NA | NA | NA | L |
-| 1800000000 | Negros Island Region (NIR) | NA | Reg | NA | NA | NA | NA | V |
-| 1900000000 | Bangsamoro Autonomous Region In Muslim Mindanao (BARMM) | 150000000 | Reg | NA | NA | NA | NA | M |
 
 Use
 [`shorten_region_name()`](https://yng-me.github.io/phscs/reference/shorten_region_name.md)
@@ -118,10 +119,10 @@ psgc_regions |>
 | psgc_code | area_name | correspondence_code | geographic_level | old_name | city_class | income_classification | urban_rural | island_region |
 |----|----|----|----|----|----|----|----|----|
 | 0100000000 | Ilocos Region | 010000000 | Reg | NA | NA | NA | NA | L |
-| 0200000000 | Cagayan Valley | 020000000 | Reg | NA | NA | NA | NA | L |
-| 0300000000 | Central Luzon | 030000000 | Reg | NA | NA | NA | NA | L |
-| 0400000000 | CALABARZON | 040000000 | Reg | NA | NA | NA | NA | L |
-| 0500000000 | Bicol Region | 050000000 | Reg | NA | NA | NA | NA | L |
+| 1000000000 | Northern Mindanao | 100000000 | Reg | NA | NA | NA | NA | M |
+| 1100000000 | Davao Region | 110000000 | Reg | NA | NA | NA | NA | M |
+| 1200000000 | SOCCSKSARGEN | 120000000 | Reg | NA | NA | NA | NA | M |
+| 1300000000 | NCR | 130000000 | Reg | NA | NA | NA | NA | L |
 
 To filter rows by code, use standard R subsetting after the call:
 
@@ -454,3 +455,65 @@ get_psccs(level = "section") |>
 | 09    | Acts against public safety and state security                       |
 | 10    | Acts against the natural environment                                |
 | 11    | Other criminal acts not elsewhere classified                        |
+
+## Philippine Tourism Statistical Classification System (PTSCS)
+
+The [PTSCS](https://psa.gov.ph/classification/ptsc) lists tourism
+characteristic industries and products. It has no `version` or `level`
+argument: choose the list with `type`. The two lists reuse the same
+codes. It returns `id`, `category_id`, `description` and `keywords`
+instead of `value` and `label`; `keywords` is a list column for
+industries (split by comma) and the original text for products.
+
+``` r
+
+get_ptscs()[, c("category_id", "description")] |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+| category_id | description                                                   |
+|-------------|---------------------------------------------------------------|
+| 1           | Accommodation Services for Visitors                           |
+| 2           | Food and Beverage Serving Activities                          |
+| 3           | Railway Passenger Transport                                   |
+| 4           | Road Passenger Transport                                      |
+| 5           | Water Passenger Transport                                     |
+| 6           | Air Passenger Transport                                       |
+| 7           | Transport Equipment Rental                                    |
+| 8           | Travel Agencies and Other Reservation Service Activities      |
+| 9           | Cultural Activities                                           |
+| 10          | Sports and Recreational Activities                            |
+| 11          | Retail Trade of Country-Specific Tourism Characteristic Goods |
+| 12          | Country-Specific Tourism Characteristic Activities            |
+| 12.1        | Maintenance, Repair and Support Activities for Transportation |
+| 12.2        | Education, Health and Personal Service Activities             |
+| 12.3        | Other Activities                                              |
+
+``` r
+
+get_ptscs(type = "products")[, c("category_id", "description")] |>
+  gt::gt() |>
+  gt::tab_options(table.align = "left")
+```
+
+| category_id | description                                        |
+|-------------|----------------------------------------------------|
+| 1           | Accommodation Services for Visitors                |
+| 2           | Food and Beverage Serving Services                 |
+| 3           | Railway Passenger Transport Services               |
+| 4           | Road Passenger Transport Services                  |
+| 5           | Water Passenger Transport Services                 |
+| 6           | Air Passenger Transport Services                   |
+| 7           | Transport Equipment Rental                         |
+| 8           | Travel Agencies and Other Reservation Services     |
+| 9           | Cultural Services                                  |
+| 10          | Sports and Recreational Services                   |
+| 11          | Country-Specific Tourism Characteristic Goods      |
+| 11.1        | Metal Products and Other Equipment                 |
+| 11.2        | Textiles, Apparels and Other Goods                 |
+| 12          | Country-Specific Tourism Characteristic Services   |
+| 12.1        | Retail Trade Services                              |
+| 12.2        | Supporting and Auxiliary Transport Services        |
+| 12.3        | Maintenance and Repair Services for Transportation |
+| 12.4        | Other Services                                     |

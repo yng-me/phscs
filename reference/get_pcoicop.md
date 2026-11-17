@@ -18,8 +18,8 @@ get_pcoicop(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 
 - level:
 
-  Character. Classification level: `"all"`, `"divisions"`, `"groups"`,
-  `"class"`, `"sub-class"`, `"item"`, or `"subitem"` (default).
+  Character. Classification level: `"all"` (default), `"divisions"`,
+  `"groups"`, `"class"`, `"sub-class"`, `"item"`, or `"subitem"`.
 
 - minimal:
 

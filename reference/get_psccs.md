@@ -17,8 +17,8 @@ get_psccs(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 
 - level:
 
-  Character. Classification level: `"all"`, `"section"`, `"divisions"`,
-  `"groups"`, `"classes"`, or `"sub-classes"` (default).
+  Character. Classification level: `"all"` (default), `"section"`,
+  `"divisions"`, `"groups"`, `"classes"`, or `"sub-classes"`.
 
 - minimal:
 

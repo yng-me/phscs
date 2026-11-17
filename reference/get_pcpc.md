@@ -17,8 +17,8 @@ get_pcpc(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 
 - level:
 
-  Character. Classification level: `"all"`, `"sections"`, `"divisions"`,
-  `"groups"`, `"classes"`, `"sub-classes"`, or `"item"` (default).
+  Character. Classification level: `"all"` (default), `"sections"`,
+  `"divisions"`, `"groups"`, `"classes"`, `"sub-classes"`, or `"item"`.
 
 - minimal:
 

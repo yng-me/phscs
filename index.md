@@ -1,6 +1,6 @@
 # The `phscs` Package
 
-`phscs` provides a single, consistent interface to seven [Philippine
+`phscs` provides a single, consistent interface to eight [Philippine
 Statistics Authority](https://psa.gov.ph/classification) (PSA)
 classification systems. All data is **bundled with the package** — no
 internet connection or API token required.
@@ -14,6 +14,7 @@ internet connection or API token required.
 | [`get_pcoicop()`](https://yng-me.github.io/phscs/reference/get_pcoicop.md) | Phil. Classification of Individual Consumption According to Purpose |
 | [`get_pcpc()`](https://yng-me.github.io/phscs/reference/get_pcpc.md) | Philippine Central Product Classification |
 | [`get_psccs()`](https://yng-me.github.io/phscs/reference/get_psccs.md) | Philippine Standard Commodity Classification System |
+| [`get_ptscs()`](https://yng-me.github.io/phscs/reference/get_ptscs.md) | Philippine Tourism Statistical Classification System |
 
 ## Installation
 

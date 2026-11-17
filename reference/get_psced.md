@@ -32,7 +32,9 @@ get_psced(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 
 ## Value
 
-A data frame of PSCED classifications.
+A data frame of PSCED classifications. When included (`minimal = FALSE`
+or `cols = "level"`), `level` is the education level code (`"0"` early
+childhood to `"8"` doctoral), not the hierarchy depth.
 
 ## References
 
