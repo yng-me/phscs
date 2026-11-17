@@ -1,7 +1,7 @@
 Package: phscs
 Type: Package
 Title: Philippine Statistical Classification Systems
-Version: 0.2.0
+Version: 0.3.0
 Description: A unified interface to access and manipulate various Philippine statistical classifications. It allows users to retrieve, filter, and harmonize classification data, making it easier to work with Philippine statistical data in R.
 Authors@R: c(
     person(
@@ -27,9 +27,9 @@ Suggests:
   knitr,
   usethis
 Config/testthat/edition: 3
-RoxygenNote: 7.3.3
 Depends:
     R (>= 3.5)
 VignetteBuilder: knitr
 BugReports: https://github.com/yng-me/phscs/issues
 URL: https://yng-me.github.io/phscs/, https://github.com/yng-me/phscs
+Config/roxygen2/version: 8.1.1

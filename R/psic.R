@@ -30,7 +30,6 @@ get_psic <- function(version = NULL, level = NULL, minimal = TRUE, cols = NULL) 
   "divisions"   = 2L,
   "groups"      = 3L,
   "classes"     = 4L,
-  "sub-classes" = 5L,
-  "sub_classes" = 5L
+  "sub-classes" = 5L
 )
 

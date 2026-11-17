@@ -10,9 +10,9 @@ get_psccs(version = NULL, level = NULL, minimal = TRUE, cols = NULL)
 \item{version}{Character. Version of the PSCCS dataset. Default is the
 latest available (\code{"2018"}).}
 
-\item{level}{Character. Classification level: \code{"all"},
+\item{level}{Character. Classification level: \code{"all"} (default),
 \code{"section"}, \code{"divisions"}, \code{"groups"}, \code{"classes"},
-or \code{"sub-classes"} (default).}
+or \code{"sub-classes"}.}
 
 \item{minimal}{Logical. If \code{TRUE} (default), returns only \code{value}
 and \code{label} columns.}

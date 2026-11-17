@@ -2,9 +2,9 @@
 #'
 #' @param version Character. Version of the PCPC dataset. Default is the
 #'   latest available (\code{"2002"}).
-#' @param level Character. Classification level: \code{"all"},
+#' @param level Character. Classification level: \code{"all"} (default),
 #'   \code{"sections"}, \code{"divisions"}, \code{"groups"}, \code{"classes"},
-#'   \code{"sub-classes"}, or \code{"item"} (default).
+#'   \code{"sub-classes"}, or \code{"item"}.
 #' @param minimal Logical. If \code{TRUE} (default), returns only \code{value}
 #'   and \code{label} columns.
 #' @param cols Optional character vector of additional columns to include

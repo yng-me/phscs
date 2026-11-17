@@ -36,9 +36,6 @@ shorten_region_name <- function(data, which = c("label", "number"), col = "area_
 
     result <- x
 
-    # Regions with "(label)" → extract inside parens
-    extract_paren <- function(s) gsub("[()]", "", regmatches(s, regexpr("\\(.*?\\)", s)))
-
     # Regions starting with "Region " → extract the roman/number after it
     strip_region <- function(s) {
       s2 <- sub("^Region ", "", s)

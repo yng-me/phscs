@@ -10,7 +10,7 @@
 status](https://www.r-pkg.org/badges/version/phscs)](https://CRAN.R-project.org/package=phscs)
 <!-- badges: end -->
 
-`phscs` provides a single, consistent interface to seven [Philippine
+`phscs` provides a single, consistent interface to eight [Philippine
 Statistics Authority](https://psa.gov.ph/classification) (PSA)
 classification systems. All data is **bundled with the package** — no
 internet connection or API token required.
@@ -24,6 +24,7 @@ internet connection or API token required.
 | `get_pcoicop()` | Phil. Classification of Individual Consumption According to Purpose |
 | `get_pcpc()` | Philippine Central Product Classification |
 | `get_psccs()` | Philippine Standard Commodity Classification System |
+| `get_ptscs()` | Philippine Tourism Statistical Classification System |
 
 ## Installation
 

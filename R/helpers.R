@@ -4,6 +4,7 @@ eval_args <- function(what, version, level, level_default) {
   levels   <- opts$levels[[what]]
 
   if (is.null(version) || tolower(version) == "latest") version <- versions[[1]]
+  version <- as.character(version)
   if (is.null(level)) level <- level_default
 
   version <- match.arg(version, versions)
@@ -24,6 +25,7 @@ get_tidy <- function(data, level, level_map, minimal, cols) {
     level_int <- level_map[[level]]
     if (!is.null(level_int)) {
       data <- data[data[["level"]] == level_int, , drop = FALSE]
+      if (!nrow(data)) cli::cli_abort("Level {.val {level}} is not available in this version.")
     }
   }
   if (minimal) {
