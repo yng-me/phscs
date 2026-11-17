@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/yng-me/phscs/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/yng-me/phscs/blob/v0.3.0/DESCRIPTION)
 
 Abdulsamad B (2026). *phscs: Philippine Statistical Classification
 Systems*. R package version 0.3.0, <https://yng-me.github.io/phscs/>.
